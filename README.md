@@ -1,4 +1,4 @@
-# Food Tracker API
+# Food Tracker
 
 [View the site](https://food.jennybelanger.com/).
 
@@ -15,14 +15,14 @@
 ### Setup
 
 ``` bash
-# Clone the API repo
+# Clone the repo
 git clone https://github.com/jlbelanger/food.git
-cd food/api
 
-# Configure the environment settings
+# Configure the PHP environment settings
+cd food/api
 cp .env.example .env
 
-# Install dependencies
+# Install PHP dependencies
 composer install
 
 # Generate key
@@ -38,14 +38,13 @@ chown -R www-data:www-data storage
 # Create account with username "test" and password "password" (or reset existing account password to "password")
 php artisan auth:reset-admin
 
+# Configure the JS environment settings
 cd ../app
-
-# Configure the environment settings
 cp .env.example .env
 cp .env.example .env.production
 cp cypress.env.example.json cypress.env.json
 
-# Install dependencies
+# Install JS dependencies
 yarn install
 ```
 
