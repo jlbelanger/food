@@ -8,6 +8,7 @@ source "${HOME}/Websites/infrastructure/deploy/composer.sh"
 source "${HOME}/Websites/infrastructure/deploy/etc.sh"
 source "${HOME}/Websites/infrastructure/deploy/git.sh"
 source "${HOME}/Websites/infrastructure/deploy/laravel.sh"
+source "${HOME}/Websites/infrastructure/deploy/static.sh"
 
 check_git_branch
 build_static "app"
