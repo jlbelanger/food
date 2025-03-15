@@ -1,0 +1,65 @@
+@use '../utilities/variables';
+
+h1 {
+	flex: 1 1 auto;
+	font-size: 18px;
+	font-weight: normal;
+	height: variables.$nav-height;
+	line-height: variables.$nav-height;
+	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+h2 {
+	font-size: 20px;
+	margin: variables.$margin 0 0;
+}
+
+h3 {
+	font-size: 18px;
+	margin: variables.$margin 0 0;
+}
+
+#heading {
+	background: variables.$darkest-gray;
+	color: variables.$white;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: variables.$nav-height;
+	z-index: 2;
+
+	.verified {
+		margin-right: 8px;
+		order: -1;
+
+		path {
+			fill: variables.$white;
+		}
+	}
+
+	.formosa-button {
+		margin-left: 8px;
+		white-space: nowrap;
+	}
+}
+
+#heading-inner {
+	align-items: center;
+	display: flex;
+	margin: 0 auto;
+	max-width: variables.$max-width;
+	padding: 0 variables.$heading-inner-padding;
+	width: 100%;
+}
+
+.heading-small {
+	margin-left: 4px;
+}
+
+#heading-spacer {
+	height: variables.$nav-height;
+	margin-bottom: variables.$margin;
+}

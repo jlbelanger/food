@@ -1,0 +1,163 @@
+@use '~@jlbelanger/formosa/src/scss/utilities/variables' as formosa;
+@use '../utilities/variables';
+
+$fieldset-padding: 16px;
+$add-meal-button-margin: 8px;
+
+#diary {
+	fieldset {
+		background: variables.$lightest-yellow;
+		border-color: variables.$dark-yellow;
+		border-style: solid;
+		border-width: 1px;
+		margin-top: variables.$margin;
+		padding: $fieldset-padding;
+
+		.formosa-field {
+			margin-top: 8px;
+		}
+
+		legend + .formosa-field {
+			margin-top: 0;
+		}
+	}
+
+	legend {
+		font-weight: bold;
+		padding: 0 4px;
+	}
+
+	#add-meal {
+		padding-bottom: calc($fieldset-padding - $add-meal-button-margin);
+	}
+
+	@media (width >= variables.$breakpoint) {
+		margin-top: calc(variables.$margin * -1);
+	}
+}
+
+#diary-table {
+	@media (width >= variables.$breakpoint) {
+		.formosa-input-wrapper {
+			margin-left: calc((variables.$margin - variables.$table-cell-padding) * -1);
+			margin-right: calc((variables.$margin - variables.$table-cell-padding) * -1);
+		}
+	}
+}
+
+#extra-form {
+	@media (width >= variables.$breakpoint) {
+		min-width: 30%;
+	}
+}
+
+#diary-top {
+	#food-wrapper {
+		border-bottom-right-radius: 0;
+		border-right-width: 0;
+		border-top-right-radius: 0;
+		width: 100%;
+	}
+
+	@media (width >= variables.$breakpoint) {
+		display: flex;
+
+		.form {
+			margin-left: calc(variables.$margin * .5);
+			margin-right: calc(variables.$margin * .5);
+		}
+
+		& > :first-child {
+			margin-left: 0;
+			width: 100%;
+		}
+
+		& > :last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.formosa-field.formosa-field--search_favourites {
+	margin-top: 8px;
+}
+
+.formosa-field--weight,
+.formosa-field--fake-weight {
+	.formosa-suffix {
+		font-size: formosa.$formosa-input-font-size;
+		line-height: formosa.$formosa-input-height;
+		padding-bottom: 0;
+		padding-top: 0;
+		position: absolute;
+	}
+}
+
+#weight,
+#fake-weight {
+	padding-right: 40px;
+	text-align: right;
+}
+
+.add-meal__button {
+	margin-bottom: $add-meal-button-margin;
+	margin-right: $add-meal-button-margin;
+}
+
+#previous,
+#next {
+	background: transparent;
+	border-radius: 0;
+	border-width: 0;
+	height: variables.$button-size;
+	padding: 0;
+	width: variables.$button-size;
+
+	path {
+		fill: variables.$white;
+	}
+}
+
+#previous {
+	margin-left: calc(variables.$heading-inner-padding * -1);
+}
+
+#previous + h1 {
+	text-align: center;
+}
+
+#next {
+	margin-right: calc(variables.$heading-inner-padding * -1);
+	transform: rotate(180deg);
+
+	&:disabled {
+		visibility: hidden;
+	}
+}
+
+.button--edit,
+.button--remove {
+	align-items: center;
+	background: transparent;
+	border-radius: 0;
+	border-width: 0;
+	display: flex;
+	height: variables.$button-size;
+	justify-content: center;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	width: variables.$button-size;
+	z-index: 1;
+}
+
+.button--remove {
+	path {
+		fill: variables.$dark-red;
+	}
+}
+
+.formosa-field--search-favourites {
+	margin-top: 8px;
+}

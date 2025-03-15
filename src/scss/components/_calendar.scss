@@ -1,0 +1,158 @@
+@use '../utilities/variables';
+
+$calendar-breakpoint: 600px;
+$calendar__item-padding: 4px;
+$calendar__legend-padding: 16px;
+$calendar__legend__item-margin: 4px;
+
+.calendar {
+	tbody {
+		background: variables.$white;
+	}
+
+	tr:nth-of-type(odd) {
+		td {
+			background-color: transparent;
+		}
+	}
+}
+
+.calendar__legend {
+	background: variables.$off-white;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0;
+	justify-content: center;
+	left: 0;
+	line-height: 1;
+	list-style: none;
+	margin: 0 auto;
+	max-width: variables.$max-width;
+	overflow: auto;
+	padding: calc($calendar__legend-padding - $calendar__legend__item-margin) 0;
+	position: fixed;
+	right: 0;
+	text-align: center;
+	top: calc(variables.$nav-height * 2);
+	z-index: 1;
+
+	& + #diary__heading {
+		margin-top: calc(($calendar__legend-padding * 2) + 3px);
+	}
+}
+
+.calendar__legend-spacer {
+	/* stylelint-disable-next-line @stylistic/max-line-length */
+	height: calc(((($calendar__legend__item-margin + $calendar__legend-padding) * 2) + variables.$font-size) - variables.$article-padding - variables.$margin);
+	margin-bottom: variables.$margin;
+}
+
+.calendar__legend__item {
+	display: inline;
+	font-size: variables.$font-size;
+	margin: $calendar__legend__item-margin;
+	padding: 4px 6px;
+}
+
+.calendar__caption {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 8px;
+}
+
+.calendar__th {
+	padding: 6px 0;
+}
+
+.calendar__th--avg {
+	&::after {
+		@media (width >= $calendar-breakpoint) {
+			content: 'Avg';
+		}
+	}
+}
+
+.calendar--hide {
+	opacity: .5;
+
+	.calendar__caption {
+		opacity: .5;
+	}
+}
+
+.calendar__day {
+	border-width: 1px;
+	font-size: 14px;
+	padding: $calendar__item-padding $calendar__item-padding 0;
+	position: relative;
+	vertical-align: top;
+	width: calc(100% / 8);
+
+	tr &:first-of-type {
+		border-left-width: 0;
+	}
+
+	tr &:last-of-type {
+		border-right-width: 0;
+	}
+
+	@media (width >= $calendar-breakpoint) {
+		font-size: 16px;
+		padding: calc($calendar__item-padding * 2) calc($calendar__item-padding * 2) $calendar__item-padding;
+	}
+}
+
+.calendar__day--avg {
+	padding: 0;
+	vertical-align: bottom;
+
+	@media (width >= $calendar-breakpoint) {
+		padding: $calendar__item-padding;
+	}
+}
+
+.calendar__link {
+	color: variables.$black;
+	font-weight: bold;
+	inset: 0;
+	padding: $calendar__item-padding;
+	position: absolute;
+	text-decoration: none;
+
+	@media (width >= $calendar-breakpoint) {
+		border: 1px solid variables.$dark-gray;
+		inset: $calendar__item-padding;
+	}
+}
+
+.calendar__link + .calendar__item {
+	margin-top: 20px;
+
+	.calendar__day--avg & {
+		margin-top: calc($calendar__item-padding + 20px);
+	}
+
+	@media (width >= $calendar-breakpoint) {
+		margin-top: 24px;
+
+		.calendar__day--avg & {
+			margin-top: calc($calendar__item-padding + 24px);
+		}
+	}
+}
+
+.calendar__item {
+	font-size: 12px;
+	padding: $calendar__item-padding;
+	text-align: right;
+	width: auto;
+
+	.calendar__day:not(.calendar__day--avg) & {
+		margin-left: calc($calendar__item-padding * -1);
+		margin-right: calc($calendar__item-padding * -1);
+	}
+
+	@media (width >= $calendar-breakpoint) {
+		font-size: variables.$font-size;
+	}
+}

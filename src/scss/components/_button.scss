@@ -1,0 +1,87 @@
+@use 'sass:color';
+@use '~@jlbelanger/formosa/src/scss/utilities/variables' as formosa;
+@use '../utilities/variables';
+
+button {
+	cursor: pointer;
+
+	&:disabled {
+		cursor: default;
+	}
+}
+
+.button--link {
+	background-color: transparent;
+	border-color: transparent;
+	color: variables.$blue;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: transparent;
+	}
+}
+
+.button--secondary,
+.formosa-button--toggle-password {
+	background: variables.$lightest-pink;
+	border-color: color.scale(variables.$lightest-pink, $lightness: -5%);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background: color.scale(variables.$lightest-pink, $lightness: -2.5%);
+		border-color: color.scale(variables.$lightest-pink, $lightness: -7.5%);
+	}
+
+	&[disabled] {
+		border-color: formosa.$formosa-input-border-color;
+	}
+
+	& + .button--secondary {
+		margin-left: 4px;
+	}
+}
+
+.button--tertiary {
+	background-color: variables.$yellow;
+	border-color: variables.$dark-yellow;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: color.scale(variables.$yellow, $lightness: -5%);
+	}
+}
+
+.button--header {
+	background-color: variables.$dark-gray;
+	border-color: color.scale(variables.$dark-gray, $lightness: -20%);
+	border-top-color: color.scale(variables.$dark-gray, $lightness: 15%);
+	color: variables.$white;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: color.scale(variables.$dark-gray, $lightness: 5%);
+	}
+
+	&:active {
+		border-bottom-color: color.scale(variables.$dark-gray, $lightness: 5%);
+		border-top-color: color.scale(variables.$dark-gray, $lightness: -20%);
+	}
+}
+
+.formosa-button.button--small {
+	padding: 4px 8px 0;
+}
+
+.formosa-button.formosa-postfix {
+	display: inline-block;
+	padding-bottom: calc(formosa.$formosa-input-padding - 3px);
+	padding-top: formosa.$formosa-input-padding;
+}
+
+.button--icon {
+	font-size: 0;
+}
