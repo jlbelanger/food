@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.phpunit.result.cache
+*.log
+/bootstrap/cache/*.php
+/public/uploads
+/vendor
+TODO.md
