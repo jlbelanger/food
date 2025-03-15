@@ -10,11 +10,13 @@ source "${HOME}/Websites/infrastructure/deploy/git.sh"
 source "${HOME}/Websites/infrastructure/deploy/laravel.sh"
 
 check_git_branch
+build_static "app"
 check_git_changes
-set_laravel_permissions
+set_laravel_permissions "/api"
 deploy_git
-deploy_composer
-deploy_laravel
-clear_laravel_cache
-create_uploads_folder
+deploy_composer "/api"
+deploy_laravel "/api"
+clear_laravel_cache "/api"
+create_uploads_folder "api/public/uploads"
+deploy_static "/app"
 printf "\e[0;32mDone.\n\e[0m"

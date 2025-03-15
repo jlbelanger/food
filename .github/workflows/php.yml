@@ -11,5 +11,6 @@ jobs:
         php-version: '8.4'
     - uses: actions/checkout@v3
     - run: composer install
+    - run: cd api
     - run: ./vendor/bin/phpcs
     - run: ./vendor/bin/phpunit --coverage-text
