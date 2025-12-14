@@ -21,7 +21,7 @@ describe('diary', () => {
 
 			cy.get('#previous').click();
 			cy.get('h1').should('have.text', 'Sun, Dec 31, 2000');
-			cy.location('pathname').should('eq', '/');
+			cy.location('pathname').should('eq', Cypress.env('public_path'));
 			cy.location('search').should('eq', '?date=2000-12-31');
 
 			cy.get('#next').click();

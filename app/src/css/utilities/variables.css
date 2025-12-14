@@ -1,0 +1,116 @@
+:root {
+	/* Colors - grays. */
+	--white: #fff;
+	--off-white: #f9f9f9;
+	--lightest-gray: #ddd;
+	--gray: #999;
+	--lightish-gray: #606060;
+	--darkish-gray: #4d4d4d;
+	--dark-gray: #444;
+	--darker-gray: #363636;
+	--darkest-gray: #222;
+	--black: #000;
+
+	/* Colors - blues. */
+	--blue: #06c;
+
+	/* Colors - pinks. */
+	--pink: #f38;
+	--dark-pink: hsl(from var(--pink) h calc(s * .6) calc(l * .8));
+	--light-pink: hsl(from var(--pink) h calc(s * .6) calc(l * 1.45));
+	--lighter-pink: hsl(from var(--pink) h calc(s * .6) calc(l * 1.47));
+	--lightest-pink: hsl(from var(--pink) h calc(s * .6) calc(l * 1.55));
+	--off-lightest-pink: hsl(from var(--pink) h calc(s * .6) calc(l * 1.57));
+
+	/* Colors - yellows. */
+	--yellow: #fd0;
+	--dark-yellow: hsl(from var(--yellow) h s calc(l * .95));
+	--dark-muted-yellow: hsl(from var(--yellow) h calc(s * .8) calc(l * .78));
+	--darkest-muted-yellow: hsl(from var(--yellow) h calc(s * .8) calc(l * .9));
+	--muted-yellow: hsl(from var(--yellow) h calc(s * .8) calc(l * 1.3));
+	--lightest-yellow: hsl(from var(--yellow) h s calc(l * 1.95));
+
+	/* Colors - reds. */
+	--red: #c33;
+	--dark-red: hsl(from var(--red) h calc(s * .75) calc(l * .8));
+
+	/* Sizes. */
+	--body-background-color: var(--off-white);
+	--button-border-bottom-width: 4px;
+	--button-size: 44px;
+	--add-meal-button-margin: 8px;
+	--article-padding: 16px;
+	--heading-inner-padding: 16px;
+	--fieldset-padding: 16px;
+	--font-size: 16px;
+	--image-width: 300px;
+	--list-width: 260px;
+	--margin: 20px;
+	--max-width: 1200px;
+	--nav-height: var(--button-size);
+	--scale-border-top-width: 2px;
+	--table-cell-padding: 6px;
+
+	/* Calendar. */
+	--calendar-breakpoint: 600px;
+	--calendar-item-padding: 4px;
+	--calendar-legend-padding: 16px;
+	--calendar-legend-item-margin: 4px;
+
+	/* Modals. */
+	--modal-background-color: var(--off-white);
+	--modal-button-margin-side: 8px;
+	--modal-button-margin-top: 20px;
+	--modal-container-background-color: hsl(from var(--black) h s l / 60%);
+	--modal-input-background-color: var(--white);
+	--modal-margin: 32px;
+	--modal-max-width: 800px;
+	--modal-padding: 32px;
+	--modal-text-color: var(--black);
+	--modal-zindex: 9999;
+
+	/* Breakpoints. */
+	--breakpoint: 800px;
+
+	/* Autocompletes. */
+	--formosa-autocomplete-options-background-color-highlighted: var(--yellow);
+
+	/* Buttons. */
+	--formosa-button-background-color: var(--pink);
+	--formosa-button-border-color: var(--dark-pink);
+	--formosa-button-danger-border-color: var(--dark-red);
+	--formosa-button-padding: 8px;
+
+	/* Colors. */
+	--formosa-color-danger: var(--red);
+	--formosa-error-color: var(--white);
+
+	/* Errors. */
+	--formosa-field-error-color: var(--dark-red);
+
+	/* Inputs. */
+	--formosa-input-border-radius: 4px;
+	--formosa-input-font-size: 16px;
+	--formosa-input-padding: 10px;
+
+	/* Margins. */
+	--formosa-margin-large: var(--margin);
+
+	/* Labels. */
+	--formosa-label-error-color: var(--dark-red);
+
+	/* Radio buttons. */
+	--formosa-radio-size: 20px;
+
+	/* Breakpoints. */
+	--formosa-responsive-breakpoint: 700px;
+
+	/* Spinners. */
+	--formosa-spinner-color: transparent;
+	--formosa-spinner-border-width: 8px;
+	--formosa-spinner-color-alternate: var(--pink);
+
+	/* Toasts. */
+	--formosa-toast-bottom: var(--nav-height);
+	--formosa-toast-padding: 12px;
+}

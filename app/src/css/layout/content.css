@@ -1,0 +1,3 @@
+#article {
+	padding: 1px var(--article-padding) var(--article-padding);
+}
