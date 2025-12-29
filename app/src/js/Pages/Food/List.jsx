@@ -1,16 +1,16 @@
 import { Alert, Api, FormosaContext, Input } from '@jlbelanger/formosa';
-import { errorMessageText, mapTrackables } from '../../Utilities/Helpers';
-import { filterByKeys, sortByKey } from '../../Utilities/Table';
-import React, { useContext, useEffect, useState } from 'react';
+import { errorMessageText, mapTrackables } from '../../Utilities/Helpers.jsx';
+import { filterByKeys, sortByKey } from '../../Utilities/Table.js';
+import { useContext, useEffect, useState } from 'react';
 import ArrowIcon from '../../../svg/arrow.svg?react'; // eslint-disable-line import/no-unresolved
-import Auth from '../../Utilities/Auth';
-import { colorsLight } from '../../Utilities/Colors';
-import Error from '../../Error';
-import FoodLink from '../../Components/FoodLink';
+import Auth from '../../Utilities/Auth.js';
+import { colorsLight } from '../../Utilities/Colors.js';
+import Error from '../../Error.jsx';
+import FoodLink from '../../Components/FoodLink.jsx';
 import HeartIcon from '../../../svg/heart.svg?react'; // eslint-disable-line import/no-unresolved
 import { Link } from 'react-router';
-import MetaTitle from '../../Components/MetaTitle';
-import TrackableBody from '../../Components/TrackableBody';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import TrackableBody from '../../Components/TrackableBody.jsx';
 
 export default function List() {
 	const api = Api.instance();
@@ -119,8 +119,8 @@ export default function List() {
 	return (
 		<>
 			<MetaTitle
+				small={`(${total === totalFiltered ? '' : `${totalFiltered.toLocaleString()} of `}${total.toLocaleString()} results)`}
 				title="Food"
-				small={`(${total !== totalFiltered ? `${totalFiltered.toLocaleString()} of ` : ''}${total.toLocaleString()} results)`}
 			>
 				<Link className="formosa-button button--small" to="/food/new">Add</Link>
 			</MetaTitle>
@@ -162,28 +162,27 @@ export default function List() {
 									</div>
 								</td>
 							</tr>
-						)
-							: filteredRows.map((row) => (
-								<tr key={row.id}>
-									<td className="column--button">
-										<button
-											aria-label={row.is_favourite ? 'Unfavourite' : 'Favourite'}
-											className={`heart ${row.is_favourite ? 'un' : ''}favourite`}
-											data-id={row.id}
-											onClick={favourite}
-											type="button"
-										>
-											<HeartIcon aria-hidden height={16} width={16} />
-										</button>
-									</td>
-									<td className="column--name">
-										<FoodLink food={row} />
-									</td>
-									<td className="column--size">{row.serving_size}</td>
-									<td className="column--units">{row.serving_units}</td>
-									<TrackableBody food={row} servingSize={row.serving_size} trackables={trackables} />
-								</tr>
-							))}
+						) : filteredRows.map((row) => (
+							<tr key={row.id}>
+								<td className="column--button">
+									<button
+										aria-label={row.is_favourite ? 'Unfavourite' : 'Favourite'}
+										className={`heart ${row.is_favourite ? 'un' : ''}favourite`}
+										data-id={row.id}
+										onClick={favourite}
+										type="button"
+									>
+										<HeartIcon aria-hidden height={16} width={16} />
+									</button>
+								</td>
+								<td className="column--name">
+									<FoodLink food={row} />
+								</td>
+								<td className="column--size">{row.serving_size}</td>
+								<td className="column--units">{row.serving_units}</td>
+								<TrackableBody food={row} servingSize={row.serving_size} trackables={trackables} />
+							</tr>
+						))}
 					</tbody>
 				</table>
 			)}

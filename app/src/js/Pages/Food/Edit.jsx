@@ -1,16 +1,16 @@
 import { Alert, Api, FormosaContext } from '@jlbelanger/formosa';
-import { errorMessageText, pluralize, prettyDate } from '../../Utilities/Helpers';
+import { errorMessageText, pluralize, prettyDate } from '../../Utilities/Helpers.jsx';
 import { Link, useNavigate, useParams } from 'react-router';
-import React, { useContext, useEffect, useState } from 'react';
-import Auth from '../../Utilities/Auth';
+import { useContext, useEffect, useState } from 'react';
+import Auth from '../../Utilities/Auth.js';
 import CheckIcon from '../../../svg/check.svg?react'; // eslint-disable-line import/no-unresolved
-import Error from '../../Error';
-import Fields from './Partials/Fields';
+import Error from '../../Error.jsx';
+import Fields from './Partials/Fields.jsx';
 import HeartIcon from '../../../svg/heart.svg?react'; // eslint-disable-line import/no-unresolved
-import MetaTitle from '../../Components/MetaTitle';
-import Modal from '../../Components/Modal';
-import MyForm from '../../Components/MyForm';
-import PaginatedTable from '../../Components/PaginatedTable';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import Modal from '../../Components/Modal.jsx';
+import MyForm from '../../Components/MyForm.jsx';
+import PaginatedTable from '../../Components/PaginatedTable.jsx';
 import PencilIcon from '../../../svg/pencil.svg?react'; // eslint-disable-line import/no-unresolved
 
 export default function Edit() {
@@ -124,8 +124,10 @@ export default function Edit() {
 								event={showModal}
 								okButtonClass="formosa-button--danger"
 								okButtonText="Delete"
+								onClickCancel={() => {
+									setShowModal(false);
+								}}
 								onClickOk={deleteRow}
-								onClickCancel={() => { setShowModal(false); }}
 								text="Are you sure you want to delete this food?"
 							/>
 						)}
@@ -134,7 +136,9 @@ export default function Edit() {
 			</MetaTitle>
 
 			<MyForm
-				afterSubmitFailure={(response) => { setActionError(errorMessageText(response)); }}
+				afterSubmitFailure={(response) => {
+					setActionError(errorMessageText(response));
+				}}
 				afterSubmitSuccess={(response) => {
 					const newRow = { ...row };
 					let hasChanged = false;
@@ -165,22 +169,13 @@ export default function Edit() {
 			</MyForm>
 
 			<div className="food-relationships">
-				{!!row.user_entries.length && (
+				{Boolean(row.user_entries.length) && (
 					<div className="food-relationships__section">
 						<h2>
 							Entries
 							<small>{` (${row.user_entries.length})`}</small>
 						</h2>
 						<PaginatedTable
-							rows={row.user_entries}
-							head={(
-								<tr>
-									<th>Date</th>
-									<th className="column--name">Serving</th>
-									{Auth.getValue('is_admin') && <th>User</th>}
-									<th className="column--button" />
-								</tr>
-							)}
 							body={(entry) => (
 								<tr key={entry.id}>
 									<td style={{ whiteSpace: 'nowrap' }}>
@@ -196,30 +191,39 @@ export default function Edit() {
 									</td>
 								</tr>
 							)}
+							head={(
+								<tr>
+									<th>Date</th>
+									<th className="column--name">Serving</th>
+									{Auth.getValue('is_admin') && <th>User</th>}
+									<th className="column--button" />
+								</tr>
+							)}
+							rows={row.user_entries}
 						/>
 					</div>
 				)}
 
-				{!!row.user_meals.length && (
+				{Boolean(row.user_meals.length) && (
 					<div className="food-relationships__section">
 						<h2>
 							Meals
 							<small>{` (${row.user_meals.length})`}</small>
 						</h2>
 						<PaginatedTable
-							rows={row.user_meals}
-							head={(
-								<tr>
-									<th style={{ width: '100%' }}>Name</th>
-									{Auth.getValue('is_admin') && <th>User</th>}
-								</tr>
-							)}
 							body={(meal) => (
 								<tr key={meal.id}>
 									<td><Link className="table-link" to={`/meals/${meal.id}`}>{meal.name}</Link></td>
 									{Auth.getValue('is_admin') && <td>{meal.user.username}</td>}
 								</tr>
 							)}
+							head={(
+								<tr>
+									<th style={{ width: '100%' }}>Name</th>
+									{Auth.getValue('is_admin') && <th>User</th>}
+								</tr>
+							)}
+							rows={row.user_meals}
 						/>
 					</div>
 				)}

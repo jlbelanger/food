@@ -1,6 +1,5 @@
-import { colorsLight } from '../Utilities/Colors';
+import { colorsLight } from '../Utilities/Colors.js';
 import PropTypes from 'prop-types';
-import { React } from 'react';
 
 export default function TrackableBody({ food, servingSize, trackables = [] }) {
 	return (

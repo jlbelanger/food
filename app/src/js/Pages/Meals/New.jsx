@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { errorMessageText } from '../../Utilities/Helpers';
+import { errorMessageText } from '../../Utilities/Helpers.jsx';
 import { Field } from '@jlbelanger/formosa';
-import Fields from './Partials/Fields';
-import MetaTitle from '../../Components/MetaTitle';
-import MyForm from '../../Components/MyForm';
+import Fields from './Partials/Fields.jsx';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import MyForm from '../../Components/MyForm.jsx';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
 export default function New() {
 	const defaultRow = { is_favourite: true };
@@ -25,9 +25,9 @@ export default function New() {
 			<MetaTitle title="Add meal">
 				<button className="formosa-button button--small" form="add-form" type="submit">Save</button>
 				<Field
+					id="add-another"
 					label="Add another"
 					labelPosition="after"
-					id="add-another"
 					setValue={setAddAnother}
 					type="checkbox"
 					value={addAnother}

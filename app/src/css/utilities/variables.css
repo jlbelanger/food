@@ -52,7 +52,6 @@
 	--table-cell-padding: 6px;
 
 	/* Calendar. */
-	--calendar-breakpoint: 600px;
 	--calendar-item-padding: 4px;
 	--calendar-legend-padding: 16px;
 	--calendar-legend-item-margin: 4px;
@@ -68,9 +67,6 @@
 	--modal-padding: 32px;
 	--modal-text-color: var(--black);
 	--modal-zindex: 9999;
-
-	/* Breakpoints. */
-	--breakpoint: 800px;
 
 	/* Autocompletes. */
 	--formosa-autocomplete-options-background-color-highlighted: var(--yellow);

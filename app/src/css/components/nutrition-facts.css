@@ -1,5 +1,8 @@
-@custom-media --breakpoint1 (width >= (var(--image-width) + var(--list-width) + var(--margin) + (var(--article-padding) * 2)));
-@custom-media --breakpoint2 (width >= (var(--image-width) + (var(--list-width) + var(--margin) + var(--article-padding)) * 2));
+/* (width >= (var(--image-width) + var(--list-width) + var(--margin) + (var(--article-padding) * 2)) */
+@custom-media --breakpoint1 (width >= calc((300px + 260px + 20px + (16px * 2))));
+
+/* (width >= (var(--image-width) + (var(--list-width) + var(--margin) + var(--article-padding)) * 2) */
+@custom-media --breakpoint2 (width >= calc((300px + 260px + 20px + 16px) * 2)));
 
 #nutrition-facts {
 	display: flex;

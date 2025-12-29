@@ -1,16 +1,16 @@
 import { Alert, Api } from '@jlbelanger/formosa';
-import React, { useEffect, useState } from 'react';
-import Auth from '../../Utilities/Auth';
-import Bmi from './Partials/Bmi';
-import ChangeEmail from './Partials/ChangeEmail';
-import ChangePassword from './Partials/ChangePassword';
-import ChangeUsername from './Partials/ChangeUsername';
-import DeleteData from './Partials/DeleteData';
-import Error from '../../Error';
-import { errorMessageText } from '../../Utilities/Helpers';
-import MetaTitle from '../../Components/MetaTitle';
-import Modal from '../../Components/Modal';
-import Trackables from './Partials/Trackables';
+import { useEffect, useState } from 'react';
+import Auth from '../../Utilities/Auth.js';
+import Bmi from './Partials/Bmi.jsx';
+import ChangeEmail from './Partials/ChangeEmail.jsx';
+import ChangePassword from './Partials/ChangePassword.jsx';
+import ChangeUsername from './Partials/ChangeUsername.jsx';
+import DeleteData from './Partials/DeleteData.jsx';
+import Error from '../../Error.jsx';
+import { errorMessageText } from '../../Utilities/Helpers.jsx';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import Modal from '../../Components/Modal.jsx';
+import Trackables from './Partials/Trackables.jsx';
 
 export default function Edit() {
 	const api = Api.instance();
@@ -102,8 +102,10 @@ export default function Edit() {
 					event={showModal}
 					okButtonClass="formosa-button--danger"
 					okButtonText="Delete"
+					onClickCancel={() => {
+						setShowModal(false);
+					}}
 					onClickOk={deleteRow}
-					onClickCancel={() => { setShowModal(false); }}
 					text="Are you sure you want to delete your account?"
 				/>
 			)}

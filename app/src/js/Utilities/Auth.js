@@ -72,7 +72,7 @@ export default class Auth {
 	}
 
 	static isLoggedIn() {
-		return !!Auth.user() && !!Auth.token();
+		return Boolean(Auth.user()) && Boolean(Auth.token());
 	}
 
 	static getValue(key, defaultValue = null) {

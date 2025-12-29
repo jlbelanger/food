@@ -1,23 +1,22 @@
-import Calendar from './Pages/Calendar';
-import Charts from './Pages/Charts';
+import Calendar from './Pages/Calendar.jsx';
+import Charts from './Pages/Charts.jsx';
 import { createBrowserRouter } from 'react-router';
-import Diary from './Pages/Diary';
-import EntryEdit from './Pages/Entries/Edit';
-import Error404 from './Error404';
-import FoodEdit from './Pages/Food/Edit';
-import FoodList from './Pages/Food/List';
-import FoodNew from './Pages/Food/New';
-import ForgotPassword from './Pages/Auth/ForgotPassword';
-import Layout from './Layout';
-import Login from './Pages/Auth/Login';
-import MealEdit from './Pages/Meals/Edit';
-import MealList from './Pages/Meals/List';
-import MealNew from './Pages/Meals/New';
-import PrivateRoute from './Components/PrivateRoute';
-import Profile from './Pages/Users/Edit';
-import Register from './Pages/Auth/Register';
-import ResetPassword from './Pages/Auth/ResetPassword';
-import VerifyEmail from './Pages/Auth/VerifyEmail';
+import EntryEdit from './Pages/Entries/Edit.jsx';
+import Error404 from './Error404.jsx';
+import FoodEdit from './Pages/Food/Edit.jsx';
+import FoodList from './Pages/Food/List.jsx';
+import FoodNew from './Pages/Food/New.jsx';
+import ForgotPassword from './Pages/Auth/ForgotPassword.jsx';
+import Layout from './Layout.jsx';
+import Login from './Pages/Auth/Login.jsx';
+import MealEdit from './Pages/Meals/Edit.jsx';
+import MealList from './Pages/Meals/List.jsx';
+import MealNew from './Pages/Meals/New.jsx';
+import PrivateRoute from './Components/PrivateRoute.jsx';
+import Profile from './Pages/Users/Edit.jsx';
+import Register from './Pages/Auth/Register.jsx';
+import ResetPassword from './Pages/Auth/ResetPassword.jsx';
+import VerifyEmail from './Pages/Auth/VerifyEmail.jsx';
 
 export default createBrowserRouter(
 	[

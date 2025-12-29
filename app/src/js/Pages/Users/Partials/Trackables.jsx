@@ -1,8 +1,8 @@
 import { Alert, Api, Field, FormAlert, Submit } from '@jlbelanger/formosa';
-import React, { useEffect, useState } from 'react';
-import Auth from '../../../Utilities/Auth';
-import { errorMessageText } from '../../../Utilities/Helpers';
-import MyForm from '../../../Components/MyForm';
+import { useEffect, useState } from 'react';
+import Auth from '../../../Utilities/Auth.js';
+import { errorMessageText } from '../../../Utilities/Helpers.jsx';
+import MyForm from '../../../Components/MyForm.jsx';
 import PropTypes from 'prop-types';
 
 export default function Trackables({ user }) {
@@ -44,8 +44,8 @@ export default function Trackables({ user }) {
 
 	return (
 		<MyForm
-			afterSubmitSuccess={afterSubmitSuccess}
 			afterNoSubmit={afterSubmitSuccess}
+			afterSubmitSuccess={afterSubmitSuccess}
 			errorMessageText={errorMessageText}
 			id={row.id}
 			method="PUT"
@@ -66,9 +66,9 @@ export default function Trackables({ user }) {
 			<FormAlert />
 
 			<Field
-				name="trackables"
 				fieldsetClassName="radio-list"
 				inputAttributes={(option) => ({ id: `trackable-${option.slug}` })}
+				name="trackables"
 				options={allTrackables}
 				type="checkbox-list"
 			/>

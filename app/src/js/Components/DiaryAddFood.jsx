@@ -1,9 +1,9 @@
-import { errorMessageText, foodLabelFn } from '../Utilities/Helpers';
+import { errorMessageText, foodLabelFn } from '../Utilities/Helpers.jsx';
 import { Field, Form } from '@jlbelanger/formosa';
-import React, { useState } from 'react';
-import Auth from '../Utilities/Auth';
+import Auth from '../Utilities/Auth.js';
 import PlusIcon from '../../svg/plus.svg?react'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 export default function DiaryAddFood({ date, entries, favouriteFood, food, setActionError, setEntries }) {
 	const [row, setRow] = useState({ date });
@@ -25,7 +25,10 @@ export default function DiaryAddFood({ date, entries, favouriteFood, food, setAc
 					document.getElementById('food').focus();
 				}, 100);
 			}}
-			beforeSubmit={() => { setActionError(false); return true; }}
+			beforeSubmit={() => {
+				setActionError(false);
+				return true;
+			}}
 			className="form"
 			htmlId="food-form"
 			method="POST"
@@ -49,8 +52,8 @@ export default function DiaryAddFood({ date, entries, favouriteFood, food, setAc
 					labelFn={foodLabelFn}
 					max={1}
 					name="food"
-					options={favouritesOnly ? favouriteFood : food}
 					optionLabelFn={foodLabelFn}
+					options={favouritesOnly ? favouriteFood : food}
 					placeholder="Search food"
 					postfix={(
 						<button className="formosa-button formosa-postfix button--secondary button--icon" id="add-food" type="submit">

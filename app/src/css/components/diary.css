@@ -25,13 +25,13 @@
 		padding-bottom: calc(var(--fieldset-padding) - var(--add-meal-button-margin));
 	}
 
-	@media (width >= var(--breakpoint)) {
+	@media (--breakpoint) {
 		margin-top: calc(var(--margin) * -1);
 	}
 }
 
 #diary-table {
-	@media (width >= var(--breakpoint)) {
+	@media (--breakpoint) {
 		.formosa-input-wrapper {
 			margin-left: calc((var(--margin) - var(--table-cell-padding)) * -1);
 			margin-right: calc((var(--margin) - var(--table-cell-padding)) * -1);
@@ -40,7 +40,7 @@
 }
 
 #extra-form {
-	@media (width >= var(--breakpoint)) {
+	@media (--breakpoint) {
 		min-width: 30%;
 	}
 }
@@ -53,7 +53,7 @@
 		width: 100%;
 	}
 
-	@media (width >= var(--breakpoint)) {
+	@media (--breakpoint) {
 		display: flex;
 
 		.form {

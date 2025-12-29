@@ -1,7 +1,6 @@
 import { CheckIcon, Field } from '@jlbelanger/formosa';
-import Auth from '../Utilities/Auth';
+import Auth from '../Utilities/Auth.js';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 export default function DiaryWeightFieldset({ disabled = false }) {
 	return (

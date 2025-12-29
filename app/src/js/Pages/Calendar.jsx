@@ -1,12 +1,12 @@
-import { colors, colorsLight } from '../Utilities/Colors';
+import { colors, colorsLight } from '../Utilities/Colors.js';
 import { Link, useNavigate, useSearchParams } from 'react-router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Api } from '@jlbelanger/formosa';
-import Auth from '../Utilities/Auth';
+import Auth from '../Utilities/Auth.js';
 import ChevronIcon from '../../svg/chevron.svg?react'; // eslint-disable-line import/no-unresolved
-import Error from '../Error';
-import { mapTrackables } from '../Utilities/Helpers';
-import MetaTitle from '../Components/MetaTitle';
+import Error from '../Error.jsx';
+import { mapTrackables } from '../Utilities/Helpers.jsx';
+import MetaTitle from '../Components/MetaTitle.jsx';
 
 export default function Calendar() {
 	const api = Api.instance();
@@ -77,7 +77,7 @@ export default function Calendar() {
 	};
 
 	const withUnits = (value, units) => (
-		value !== null ? `${value.toLocaleString()} ${units || ''}`.trim() : ''
+		value === null ? '' : `${value.toLocaleString()} ${units || ''}`.trim()
 	);
 
 	const calculateWeekAverage = (week, key, units) => {
@@ -91,7 +91,7 @@ export default function Calendar() {
 		let count = 0;
 
 		for (i = 0; i < num; i += 1) {
-			if (week[i].trackables && Object.prototype.hasOwnProperty.call(week[i].trackables, key) && week[i].trackables[key]) {
+			if (week[i].trackables && Object.hasOwn(week[i].trackables, key) && week[i].trackables[key]) {
 				total += week[i].trackables[key];
 				count += 1;
 			}
@@ -133,17 +133,17 @@ export default function Calendar() {
 			<div className="calendar__legend-spacer" />
 
 			{months.map((month) => (
-				<table className={`calendar${!month.data ? ' calendar--hide' : ''}`} key={month.month}>
+				<table className={`calendar${month.data ? '' : ' calendar--hide'}`} key={month.month}>
 					<caption className="calendar__caption">{prettyMonth(month.month)}</caption>
 					<thead>
 						<tr>
-							<th className="calendar__th" aria-label="Sunday" scope="col">S</th>
-							<th className="calendar__th" aria-label="Monday" scope="col">M</th>
-							<th className="calendar__th" aria-label="Tuesday" scope="col">T</th>
-							<th className="calendar__th" aria-label="Wednesday" scope="col">W</th>
-							<th className="calendar__th" aria-label="Thursday" scope="col">T</th>
-							<th className="calendar__th" aria-label="Friday" scope="col">F</th>
-							<th className="calendar__th" aria-label="Saturday" scope="col">S</th>
+							<th aria-label="Sunday" className="calendar__th" scope="col">S</th>
+							<th aria-label="Monday" className="calendar__th" scope="col">M</th>
+							<th aria-label="Tuesday" className="calendar__th" scope="col">T</th>
+							<th aria-label="Wednesday" className="calendar__th" scope="col">W</th>
+							<th aria-label="Thursday" className="calendar__th" scope="col">T</th>
+							<th aria-label="Friday" className="calendar__th" scope="col">F</th>
+							<th aria-label="Saturday" className="calendar__th" scope="col">S</th>
 							<th className="calendar__th calendar__th--avg" />
 						</tr>
 					</thead>

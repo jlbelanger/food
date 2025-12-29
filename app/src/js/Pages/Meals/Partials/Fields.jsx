@@ -1,6 +1,5 @@
 import { Field } from '@jlbelanger/formosa';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 export default function Fields({ row = null }) {
 	return (

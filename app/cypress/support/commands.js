@@ -1,4 +1,4 @@
-import 'cypress-file-upload'; // eslint-disable-line import/no-extraneous-dependencies
+import 'cypress-file-upload';
 
 Cypress.Commands.add('clearBmiSettings', () => {
 	cy.intercept('GET', '**/api/users/*').as('getUser');
@@ -159,7 +159,7 @@ Cypress.Commands.add('setTrackables', (trackables = []) => {
 	cy.get('.formosa-toast__close').click();
 });
 
-export const mockServerError = (method, url) => ( // eslint-disable-line import/prefer-default-export
+export const mockServerError = (method, url) => (
 	cy.intercept(
 		method,
 		url,

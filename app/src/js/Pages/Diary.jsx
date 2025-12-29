@@ -1,20 +1,20 @@
 import { Alert, Api, Field, Form, FormosaContext } from '@jlbelanger/formosa';
-import { errorMessageText, mapTrackables, pad, pluralize, prettyDate } from '../Utilities/Helpers';
+import { errorMessageText, mapTrackables, pad, pluralize, prettyDate } from '../Utilities/Helpers.jsx';
 import { Link, useNavigate, useSearchParams } from 'react-router';
-import React, { useContext, useEffect, useState } from 'react';
-import Auth from '../Utilities/Auth';
+import { useContext, useEffect, useState } from 'react';
+import Auth from '../Utilities/Auth.js';
 import ChevronIcon from '../../svg/chevron.svg?react'; // eslint-disable-line import/no-unresolved
-import { colorsLight } from '../Utilities/Colors';
-import DiaryAddExtra from '../Components/DiaryAddExtra';
-import DiaryAddFood from '../Components/DiaryAddFood';
-import DiaryAddMeal from '../Components/DiaryAddMeal';
-import DiaryWeight from '../Components/DiaryWeight';
-import FoodLink from '../Components/FoodLink';
-import MetaTitle from '../Components/MetaTitle';
+import { colorsLight } from '../Utilities/Colors.js';
+import DiaryAddExtra from '../Components/DiaryAddExtra.jsx';
+import DiaryAddFood from '../Components/DiaryAddFood.jsx';
+import DiaryAddMeal from '../Components/DiaryAddMeal.jsx';
+import DiaryWeight from '../Components/DiaryWeight.jsx';
+import FoodLink from '../Components/FoodLink.jsx';
+import MetaTitle from '../Components/MetaTitle.jsx';
 import PencilIcon from '../../svg/pencil.svg?react'; // eslint-disable-line import/no-unresolved
-import TrackableBody from '../Components/TrackableBody';
-import TrackableFoot from '../Components/TrackableFoot';
-import TrackableHead from '../Components/TrackableHead';
+import TrackableBody from '../Components/TrackableBody.jsx';
+import TrackableFoot from '../Components/TrackableFoot.jsx';
+import TrackableHead from '../Components/TrackableHead.jsx';
 import XIcon from '../../svg/x.svg?react'; // eslint-disable-line import/no-unresolved
 
 export default function Diary() {
@@ -93,7 +93,7 @@ export default function Diary() {
 
 	const changeDay = (modifier = 1) => {
 		let newDate = new Date(`${currentDate}T12:00:00Z`);
-		newDate.setDate(newDate.getDate() + (1 * modifier));
+		newDate.setDate(newDate.getDate() + Number(modifier));
 		newDate = ymd(newDate);
 		navigate(`?date=${newDate}`);
 		return newDate;
@@ -168,9 +168,9 @@ export default function Diary() {
 						<DiaryAddFood
 							date={currentDate}
 							entries={entries}
-							key={`add-food-${currentDate}`}
 							favouriteFood={favouriteFood}
 							food={food}
+							key={`add-food-${currentDate}`}
 							setActionError={setActionError}
 							setEntries={setEntries}
 						/>
@@ -210,7 +210,10 @@ export default function Diary() {
 								<td className="column--serving">
 									<Form
 										afterSubmitFailure={afterSubmitFailure}
-										beforeSubmit={() => { setActionError(false); return true; }}
+										beforeSubmit={() => {
+											setActionError(false);
+											return true;
+										}}
 										id={entry.id}
 										method="PUT"
 										path="entries"
@@ -221,19 +224,19 @@ export default function Diary() {
 										successToastText="Entry saved successfully."
 									>
 										<Field
-											onBlur={() => {
-												document.getElementById(`entry-${entry.id}-submit`).click();
-											}}
 											id={`user_serving_size-${i}`}
 											inputMode="decimal"
 											name="user_serving_size"
-											size={6}
-											suffix={pluralize(entry.food.serving_units, entry.user_serving_size)}
+											onBlur={() => {
+												document.getElementById(`entry-${entry.id}-submit`).click();
+											}}
 											setValue={(newValue) => {
 												const e = [...entries];
 												e[i].user_serving_size = newValue;
 												setEntries(e);
 											}}
+											size={6}
+											suffix={pluralize(entry.food.serving_units, entry.user_serving_size)}
 											value={entry.user_serving_size}
 										/>
 										<button id={`entry-${entry.id}-submit`} style={{ display: 'none' }} type="submit" />
@@ -266,7 +269,10 @@ export default function Diary() {
 								<td className="column--name">
 									<Form
 										afterSubmitFailure={afterSubmitFailure}
-										beforeSubmit={() => { setActionError(false); return true; }}
+										beforeSubmit={() => {
+											setActionError(false);
+											return true;
+										}}
 										id={extra.id}
 										method="PUT"
 										path="extras"
@@ -277,11 +283,11 @@ export default function Diary() {
 										successToastText="Extra saved successfully."
 									>
 										<Field
+											id={`note-${i}`}
+											name="note"
 											onBlur={() => {
 												document.getElementById(`extra-${extra.id}-submit`).click();
 											}}
-											id={`note-${i}`}
-											name="note"
 											setValue={(newValue) => {
 												const e = [...extras];
 												e[i].note = newValue;
@@ -310,7 +316,10 @@ export default function Diary() {
 										{trackables.map((trackable, j) => (
 											<Form
 												afterSubmitFailure={afterSubmitFailure}
-												beforeSubmit={() => { setActionError(false); return true; }}
+												beforeSubmit={() => {
+													setActionError(false);
+													return true;
+												}}
 												className="trackable-item"
 												id={extra.id}
 												key={trackable.id}
@@ -324,12 +333,12 @@ export default function Diary() {
 												successToastText="Extra saved successfully."
 											>
 												<Field
-													onBlur={() => {
-														document.getElementById(`extra-${trackable.slug}-${extra.id}-submit`).click();
-													}}
 													id={`${trackable.slug}-${i}`}
 													inputMode="numeric"
 													name={trackable.slug}
+													onBlur={() => {
+														document.getElementById(`extra-${trackable.slug}-${extra.id}-submit`).click();
+													}}
 													setValue={(newValue) => {
 														const e = [...extras];
 														e[i][trackable.slug] = newValue;

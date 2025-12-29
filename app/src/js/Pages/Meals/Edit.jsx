@@ -1,19 +1,19 @@
 import { Alert, Api, Field, FormosaContext, Input } from '@jlbelanger/formosa';
-import { errorMessageText, foodLabelFn, mapTrackables, pluralize } from '../../Utilities/Helpers';
-import React, { useContext, useEffect, useState } from 'react';
+import { errorMessageText, foodLabelFn, mapTrackables, pluralize } from '../../Utilities/Helpers.jsx';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import Auth from '../../Utilities/Auth';
-import Error from '../../Error';
-import Fields from './Partials/Fields';
-import FoodLink from '../../Components/FoodLink';
+import Auth from '../../Utilities/Auth.js';
+import Error from '../../Error.jsx';
+import Fields from './Partials/Fields.jsx';
+import FoodLink from '../../Components/FoodLink.jsx';
 import HeartIcon from '../../../svg/heart.svg?react'; // eslint-disable-line import/no-unresolved
-import MetaTitle from '../../Components/MetaTitle';
-import Modal from '../../Components/Modal';
-import MyForm from '../../Components/MyForm';
-import TrackableBody from '../../Components/TrackableBody';
-import TrackableFoot from '../../Components/TrackableFoot';
-import TrackableHead from '../../Components/TrackableHead';
-import { v4 as uuidv4 } from 'uuid';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import Modal from '../../Components/Modal.jsx';
+import MyForm from '../../Components/MyForm.jsx';
+import TrackableBody from '../../Components/TrackableBody.jsx';
+import TrackableFoot from '../../Components/TrackableFoot.jsx';
+import TrackableHead from '../../Components/TrackableHead.jsx';
+import { v4 as uuidv4 } from 'uuid'; // eslint-disable-line import/no-unresolved
 import XIcon from '../../../svg/x.svg?react'; // eslint-disable-line import/no-unresolved
 
 export default function Edit() {
@@ -148,15 +148,19 @@ export default function Edit() {
 						event={showModal}
 						okButtonClass="formosa-button--danger"
 						okButtonText="Delete"
+						onClickCancel={() => {
+							setShowModal(false);
+						}}
 						onClickOk={deleteRow}
-						onClickCancel={() => { setShowModal(false); }}
 						text="Are you sure you want to delete this meal?"
 					/>
 				)}
 			</MetaTitle>
 
 			<MyForm
-				afterSubmitFailure={(response) => { setActionError(errorMessageText(response)); }}
+				afterSubmitFailure={(response) => {
+					setActionError(errorMessageText(response));
+				}}
 				afterSubmitSuccess={(response) => {
 					setRow({ ...row, foods: response.foods });
 				}}
@@ -175,8 +179,8 @@ export default function Edit() {
 				htmlId="edit-form"
 				id={id}
 				method="PUT"
-				path="meals"
 				params={mealParams}
+				path="meals"
 				preventEmptyRequest
 				relationshipNames={['foods', 'foods.food', 'foods.meal', 'user']}
 				row={row}
@@ -199,10 +203,9 @@ export default function Edit() {
 							id="new-food"
 							labelFn={foodLabelFn}
 							max={1}
-							options={favouritesOnly ? filteredFavouriteFood : filteredFood}
 							optionLabelFn={foodLabelFn}
+							options={favouritesOnly ? filteredFavouriteFood : filteredFood}
 							placeholder="Search foods"
-							type="autocomplete"
 							setValue={(food) => {
 								const newValue = {
 									id: `temp-${uuidv4()}`,
@@ -223,6 +226,7 @@ export default function Edit() {
 									document.getElementById('new-food').focus();
 								});
 							}}
+							type="autocomplete"
 							value={newFood}
 						/>
 						<Field

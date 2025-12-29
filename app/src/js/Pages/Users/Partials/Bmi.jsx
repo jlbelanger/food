@@ -1,13 +1,13 @@
 import { Field, FormAlert, Submit } from '@jlbelanger/formosa';
-import React, { useState } from 'react';
-import Auth from '../../../Utilities/Auth';
-import { errorMessageText } from '../../../Utilities/Helpers';
-import MyForm from '../../../Components/MyForm';
+import Auth from '../../../Utilities/Auth.js';
+import { errorMessageText } from '../../../Utilities/Helpers.jsx';
+import MyForm from '../../../Components/MyForm.jsx';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 export default function Bmi({ user }) {
 	const [row, setRow] = useState(user);
-	const [isMeasurementUnitsDisabled, setIsMeasurementUnitsDisabled] = useState(!!row.measurement_units);
+	const [isMeasurementUnitsDisabled, setIsMeasurementUnitsDisabled] = useState(Boolean(row.measurement_units));
 
 	const sexes = {
 		m: 'male',
@@ -88,7 +88,12 @@ export default function Bmi({ user }) {
 			bmiNote = ' (obese - above 30.0)';
 		}
 	}
-	const showBmi = !!row.height && row.age >= 18 && !!row.activity_level && !!row.weight && !!row.weight.weight && !!row.measurement_units;
+	const showBmi = Boolean(row.height)
+		&& row.age >= 18
+		&& Boolean(row.activity_level)
+		&& Boolean(row.weight)
+		&& Boolean(row.weight.weight)
+		&& Boolean(row.measurement_units);
 	let weightDate = '';
 	if (row.weight) {
 		weightDate = new Date(`${row.weight.date}T12:00:00Z`).toLocaleString('en-CA', {
@@ -116,7 +121,7 @@ export default function Bmi({ user }) {
 			<FormAlert />
 
 			{showBmi ? (
-				/* eslint-disable react/jsx-one-expression-per-line */
+				/* eslint-disable @stylistic/jsx-one-expression-per-line */
 				<p id="bmi">Your BMI is <b>{bmi}</b>{bmiNote}.</p>
 			) : (
 				<p>Fill out the fields below to see your BMI.</p>
@@ -134,7 +139,7 @@ export default function Bmi({ user }) {
 						you should eat 500 calories less in a day than the calories you would eat to maintain your weight.
 					</span>
 				</p>
-				/* eslint-enable react/jsx-one-expression-per-line */
+				/* eslint-enable @stylistic/jsx-one-expression-per-line */
 			)}
 
 			<div className="formosa-responsive">

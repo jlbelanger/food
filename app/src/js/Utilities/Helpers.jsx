@@ -1,7 +1,6 @@
-import Auth from './Auth';
+import Auth from './Auth.js';
 import CheckIcon from '../../svg/check.svg?react'; // eslint-disable-line import/no-unresolved
 import { Link } from 'react-router';
-import React from 'react';
 
 export const afterSubmitFailure = (error) => {
 	if (error.status === 401) {
@@ -63,7 +62,7 @@ export const pluralize = (servingUnits, servingSize) => {
 		pastry: 'pastries',
 		patty: 'patties',
 	};
-	if (Object.prototype.hasOwnProperty.call(specialPluralize, servingUnits)) {
+	if (Object.hasOwn(specialPluralize, servingUnits)) {
 		return specialPluralize[servingUnits];
 	}
 

@@ -1,8 +1,8 @@
 import { Api, FormosaContext } from '@jlbelanger/formosa';
 import { Link, NavLink, useLocation } from 'react-router';
-import React, { useContext } from 'react';
-import Auth from './Utilities/Auth';
-import { errorMessageText } from './Utilities/Helpers';
+import Auth from './Utilities/Auth.js';
+import { errorMessageText } from './Utilities/Helpers.jsx';
+import { useContext } from 'react';
 
 export default function Header() {
 	const { addToast } = useContext(FormosaContext);

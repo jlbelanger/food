@@ -1,5 +1,5 @@
 import 'luxon';
-import 'chartjs-adapter-luxon'; // eslint-disable-line import/no-unresolved
+import 'chartjs-adapter-luxon';
 import {
 	Chart as ChartJS,
 	LinearScale,
@@ -9,14 +9,14 @@ import {
 	TimeScale,
 	Tooltip,
 } from 'chart.js';
-import React, { createRef, useEffect, useMemo, useState } from 'react';
+import { createRef, useEffect, useMemo, useState } from 'react';
 import { Api } from '@jlbelanger/formosa';
-import Auth from '../Utilities/Auth';
-import { Chart } from 'react-chartjs-2'; // eslint-disable-line import/no-unresolved
-import ChartScale from '../Components/ChartScale';
-import { colorsDark } from '../Utilities/Colors';
-import Error from '../Error';
-import MetaTitle from '../Components/MetaTitle';
+import Auth from '../Utilities/Auth.js';
+import { Chart } from 'react-chartjs-2';
+import ChartScale from '../Components/ChartScale.jsx';
+import { colorsDark } from '../Utilities/Colors.js';
+import Error from '../Error.jsx';
+import MetaTitle from '../Components/MetaTitle.jsx';
 import zoomPlugin from 'chartjs-plugin-zoom';
 
 export default function Charts() {
@@ -27,7 +27,7 @@ export default function Charts() {
 	), chartSlugs);
 	const [datasets, setDatasets] = useState([]);
 	const [error, setError] = useState(false);
-	const [max] = useState((new Date()).getTime());
+	const [max] = useState((new Date()).getTime()); // eslint-disable-line react/hook-use-state
 	const [min, setMin] = useState('original');
 
 	const getEntries = (ignore) => {
@@ -189,9 +189,9 @@ export default function Charts() {
 					</header>
 					<div className="chart-container">
 						<Chart
-							ref={chartRefs[i]}
 							data={dataset.data}
 							options={graphOptions(dataset.minY, dataset.maxY)}
+							ref={chartRefs[i]}
 							type="line"
 						/>
 					</div>

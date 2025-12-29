@@ -1,8 +1,8 @@
 import { Alert, Api, Form, FormosaContext } from '@jlbelanger/formosa';
-import React, { useContext } from 'react';
-import DiaryWeightFieldset from './DiaryWeightFieldset';
-import { errorMessageText } from '../Utilities/Helpers';
+import DiaryWeightFieldset from './DiaryWeightFieldset.jsx';
+import { errorMessageText } from '../Utilities/Helpers.jsx';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
 export default function DiaryWeight({
 	date = null,
@@ -21,7 +21,7 @@ export default function DiaryWeight({
 
 	if (error) {
 		return (
-			<Alert type="error" className="form">Error getting weight.</Alert>
+			<Alert className="form" type="error">Error getting weight.</Alert>
 		);
 	}
 

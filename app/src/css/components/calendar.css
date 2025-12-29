@@ -1,5 +1,3 @@
-@custom-media --calendar-breakpoint (width >= var(--calendar-breakpoint));
-
 .calendar {
 	tbody {
 		background: var(--white);
@@ -101,6 +99,14 @@
 	padding: 0;
 	vertical-align: bottom;
 
+	.calendar__link + .calendar__item {
+		margin-top: calc(var(--calendar-item-padding) + 20px);
+
+		@media (--calendar-breakpoint) {
+			margin-top: calc(var(--calendar-item-padding) + 24px);
+		}
+	}
+
 	@media (--calendar-breakpoint) {
 		padding: var(--calendar-item-padding);
 	}
@@ -123,16 +129,8 @@
 .calendar__link + .calendar__item {
 	margin-top: 20px;
 
-	.calendar__day--avg & {
-		margin-top: calc(var(--calendar-item-padding) + 20px);
-	}
-
 	@media (--calendar-breakpoint) {
 		margin-top: 24px;
-
-		.calendar__day--avg & {
-			margin-top: calc(var(--calendar-item-padding) + 24px);
-		}
 	}
 }
 

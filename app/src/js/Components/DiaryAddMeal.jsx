@@ -1,6 +1,6 @@
 import { Alert, Api, FormosaContext } from '@jlbelanger/formosa';
-import React, { useContext, useEffect, useState } from 'react';
-import { errorMessageText } from '../Utilities/Helpers';
+import { useContext, useEffect, useState } from 'react';
+import { errorMessageText } from '../Utilities/Helpers.jsx';
 import PropTypes from 'prop-types';
 
 export default function DiaryAddMeal({ date, entries, foodFields, setActionError, setEntries }) {

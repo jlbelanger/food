@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
-import Auth from '../../Utilities/Auth';
-import { errorMessageText } from '../../Utilities/Helpers';
-import Diary from '../Diary';
+import Auth from '../../Utilities/Auth.js';
+import Diary from '../Diary.jsx';
+import { errorMessageText } from '../../Utilities/Helpers.jsx';
 import { Form } from '@jlbelanger/formosa';
-import LoginForm from './LoginForm';
-import MetaTitle from '../../Components/MetaTitle';
+import LoginForm from './LoginForm.jsx';
+import MetaTitle from '../../Components/MetaTitle.jsx';
 
 export default function Login() {
 	const [urlSearchParams] = useSearchParams();
@@ -76,8 +76,8 @@ export default function Login() {
 					message={message}
 					row={row}
 					setMessage={setMessage}
-					showVerificationButton={showVerificationButton}
 					setShowVerificationButton={setShowVerificationButton}
+					showVerificationButton={showVerificationButton}
 				/>
 			</Form>
 		</>

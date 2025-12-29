@@ -1,12 +1,12 @@
 import { Alert, Api, FormosaContext, Input } from '@jlbelanger/formosa';
-import { filterByKeys, sortByKey } from '../../Utilities/Table';
-import React, { useContext, useEffect, useState } from 'react';
+import { filterByKeys, sortByKey } from '../../Utilities/Table.js';
+import { useContext, useEffect, useState } from 'react';
 import ArrowIcon from '../../../svg/arrow.svg?react'; // eslint-disable-line import/no-unresolved
-import Error from '../../Error';
-import { errorMessageText } from '../../Utilities/Helpers';
+import Error from '../../Error.jsx';
+import { errorMessageText } from '../../Utilities/Helpers.jsx';
 import HeartIcon from '../../../svg/heart.svg?react'; // eslint-disable-line import/no-unresolved
 import { Link } from 'react-router';
-import MetaTitle from '../../Components/MetaTitle';
+import MetaTitle from '../../Components/MetaTitle.jsx';
 
 export default function List() {
 	const api = Api.instance();
@@ -114,17 +114,14 @@ export default function List() {
 		</button>
 	);
 
-	let numResults = `${total.toLocaleString()} result${total !== 1 ? 's' : ''}`;
+	let numResults = `${total.toLocaleString()} result${total === 1 ? '' : 's'}`;
 	if (total !== totalFiltered) {
 		numResults = `${totalFiltered.toLocaleString()} of ${numResults}`;
 	}
 
 	return (
 		<>
-			<MetaTitle
-				title="Meals"
-				small={`(${numResults})`}
-			>
+			<MetaTitle small={`(${numResults})`} title="Meals">
 				<Link className="formosa-button button--small" to="/meals/new">Add</Link>
 			</MetaTitle>
 
@@ -156,23 +153,22 @@ export default function List() {
 									</div>
 								</td>
 							</tr>
-						)
-							: filteredRows.map((row) => (
-								<tr key={row.id}>
-									<td className="column--button">
-										<button
-											aria-label={row.is_favourite ? 'Unfavourite' : 'Favourite'}
-											className={`heart ${row.is_favourite ? 'un' : ''}favourite`}
-											data-id={row.id}
-											onClick={favourite}
-											type="button"
-										>
-											<HeartIcon aria-hidden height={16} width={16} />
-										</button>
-									</td>
-									<td className="column--name"><Link className="table-link" to={`/meals/${row.id}`}>{row.name}</Link></td>
-								</tr>
-							))}
+						) : filteredRows.map((row) => (
+							<tr key={row.id}>
+								<td className="column--button">
+									<button
+										aria-label={row.is_favourite ? 'Unfavourite' : 'Favourite'}
+										className={`heart ${row.is_favourite ? 'un' : ''}favourite`}
+										data-id={row.id}
+										onClick={favourite}
+										type="button"
+									>
+										<HeartIcon aria-hidden height={16} width={16} />
+									</button>
+								</td>
+								<td className="column--name"><Link className="table-link" to={`/meals/${row.id}`}>{row.name}</Link></td>
+							</tr>
+						))}
 					</tbody>
 				</table>
 			)}

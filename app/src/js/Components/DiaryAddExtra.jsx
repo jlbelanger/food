@@ -1,8 +1,8 @@
 import { Field, Form } from '@jlbelanger/formosa';
-import React, { useState } from 'react';
-import { errorMessageText } from '../Utilities/Helpers';
+import { errorMessageText } from '../Utilities/Helpers.jsx';
 import PlusIcon from '../../svg/plus.svg?react'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 export default function DiaryAddExtra({ date, extras, setActionError, setExtras }) {
 	const [row, setRow] = useState({ date });
@@ -20,7 +20,10 @@ export default function DiaryAddExtra({ date, extras, setActionError, setExtras 
 				setExtras(newExtras);
 				setRow({ ...row, note: '' });
 			}}
-			beforeSubmit={() => { setActionError(false); return true; }}
+			beforeSubmit={() => {
+				setActionError(false);
+				return true;
+			}}
 			className="form"
 			htmlId="extra-form"
 			method="POST"

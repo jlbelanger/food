@@ -1,9 +1,9 @@
 import { Error, Field, Input, Label } from '@jlbelanger/formosa';
-import React, { useEffect, useRef } from 'react';
-import Auth from '../../../Utilities/Auth';
+import { useEffect, useRef } from 'react';
+import Auth from '../../../Utilities/Auth.js';
 import PropTypes from 'prop-types';
 
-export default function Fields({ readOnly = false, row = null }) {
+export default function Fields({ readOnly = false, row = null }) { // eslint-disable-line complexity
 	const image = useRef(null);
 
 	const onScroll = () => {
@@ -74,7 +74,7 @@ export default function Fields({ readOnly = false, row = null }) {
 
 	const isVisible = (attribute) => (!readOnly || row[attribute] !== null);
 
-	const servingSizeDisabled = !!row.id;
+	const servingSizeDisabled = Boolean(row.id);
 	const attributes = {
 		className: 'nutrition-facts__input',
 		inputMode: 'numeric',
@@ -110,7 +110,7 @@ export default function Fields({ readOnly = false, row = null }) {
 
 			{!readOnly && (
 				<div className="formosa-responsive">
-					{Auth.getValue('is_admin') && !!row.id && <Field label="User ID" name="user.id" size={5} />}
+					{Auth.getValue('is_admin') && Boolean(row.id) && <Field label="User ID" name="user.id" size={5} />}
 					<Field afterChange={autopopulate} label="Name" name="name" readOnly={readOnly} required />
 					<Field label="Slug" name="slug" readOnly required />
 					<div className="formosa-field formosa-field--serving_size">
@@ -131,10 +131,10 @@ export default function Fields({ readOnly = false, row = null }) {
 					</div>
 					<Field
 						accept="image/*"
-						label="Front image"
+						imageHeight={200}
 						imagePrefix={import.meta.env.VITE_API_URL}
 						imagePreview
-						imageHeight={200}
+						label="Front image"
 						linkAttributes={{ rel: 'noreferrer', target: '_blank' }}
 						linkImage
 						name="front_image"
@@ -169,8 +169,8 @@ export default function Fields({ readOnly = false, row = null }) {
 					<a
 						href={infoImageLink}
 						id="nutrition-facts__link"
-						rel="noreferrer"
 						ref={image}
+						rel="noreferrer"
 						target="_blank"
 					>
 						<img

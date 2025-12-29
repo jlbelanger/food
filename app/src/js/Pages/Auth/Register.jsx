@@ -1,10 +1,10 @@
 import { Field, Submit } from '@jlbelanger/formosa';
-import React, { useState } from 'react';
-import Auth from '../../Utilities/Auth';
-import { errorMessageText } from '../../Utilities/Helpers';
-import MetaTitle from '../../Components/MetaTitle';
-import MyForm from '../../Components/MyForm';
+import Auth from '../../Utilities/Auth.js';
+import { errorMessageText } from '../../Utilities/Helpers.jsx';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import MyForm from '../../Components/MyForm.jsx';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
 export default function Register() {
 	const navigate = useNavigate();

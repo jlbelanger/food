@@ -1,11 +1,11 @@
 import { Alert, Api, Field } from '@jlbelanger/formosa';
-import { errorMessageText, foodLabelFn, foodLabelLinkFn, pluralize } from '../../Utilities/Helpers';
+import { errorMessageText, foodLabelFn, foodLabelLinkFn, pluralize } from '../../Utilities/Helpers.jsx';
 import { Link, useParams } from 'react-router';
-import React, { useEffect, useState } from 'react';
-import Auth from '../../Utilities/Auth';
-import Error from '../../Error';
-import MetaTitle from '../../Components/MetaTitle';
-import MyForm from '../../Components/MyForm';
+import { useEffect, useState } from 'react';
+import Auth from '../../Utilities/Auth.js';
+import Error from '../../Error.jsx';
+import MetaTitle from '../../Components/MetaTitle.jsx';
+import MyForm from '../../Components/MyForm.jsx';
 
 export default function Edit() {
 	const api = Api.instance();
@@ -94,8 +94,8 @@ export default function Edit() {
 						labelFn={foodLabelLinkFn}
 						max={1}
 						name="food"
-						options={favouritesOnly ? favouriteFood : food}
 						optionLabelFn={foodLabelFn}
+						options={favouritesOnly ? favouriteFood : food}
 						placeholder="Search food"
 						postfix={(
 							<Field

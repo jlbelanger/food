@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { Field } from '@jlbelanger/formosa';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 export default function ChartScale({ chartRefs }) {
 	const [scale, setScale] = useState('Month');
@@ -9,8 +9,8 @@ export default function ChartScale({ chartRefs }) {
 	chartRefs.forEach((chartRef) => {
 		const chart = chartRef.current;
 		if (chart) {
-			const max = chart.config._config.options.plugins.zoom.limits.x.max; // eslint-disable-line no-underscore-dangle
-			let min = chart.config._config.options.plugins.zoom.limits.x.min; // eslint-disable-line no-underscore-dangle
+			const max = chart.config._config.options.plugins.zoom.limits.x.max;
+			let min = chart.config._config.options.plugins.zoom.limits.x.min;
 			if (scale === 'Month') {
 				min = max - (oneDayInMilliseconds * 30);
 				chart.options.scales.x.time.unit = 'day';
@@ -30,10 +30,10 @@ export default function ChartScale({ chartRefs }) {
 			itemLabelClassName="formosa-button button--small button--header"
 			label="Scale:"
 			name="radio"
-			type="radio"
 			options={['Month', 'Year', 'All']}
-			value={scale}
 			setValue={setScale}
+			type="radio"
+			value={scale}
 		/>
 	);
 }

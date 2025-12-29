@@ -27,13 +27,13 @@ table {
 		margin-top: 0;
 	}
 
-	@media (width >= var(--max-width)) {
+	@media (--max-width) {
 		margin-left: 0;
 		margin-right: 0;
 		width: 100%;
 	}
 
-	@media (width >= var(--breakpoint)) {
+	@media (--breakpoint) {
 		td {
 			padding: var(--table-cell-padding) var(--margin);
 		}
@@ -102,7 +102,7 @@ th {
 		position: absolute;
 	}
 
-	@media (width < var(--breakpoint)) {
+	@media (--breakpoint-down) {
 		overflow: auto;
 	}
 }
@@ -134,7 +134,7 @@ th {
 
 	thead &,
 	tfoot & {
-		@media (width >= var(--breakpoint)) {
+		@media (--breakpoint) {
 			background: transparent !important; /* stylelint-disable-line declaration-no-important */
 		}
 	}
@@ -180,7 +180,7 @@ th {
 	}
 }
 
-@media (width < var(--breakpoint)) {
+@media (--breakpoint-down) {
 	#food-list {
 		.column--name {
 			width: calc(100% - 44px);
