@@ -1,0 +1,28 @@
+#search-container {
+	align-items: center;
+	display: flex;
+	position: relative;
+
+	input {
+		padding-right: var(--button-size);
+	}
+
+	label {
+		margin-right: 8px;
+	}
+
+	svg {
+		bottom: 0;
+		height: var(--button-size);
+		margin-top: 0;
+		padding: 12px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: var(--button-size);
+
+		path {
+			fill: var(--gray);
+		}
+	}
+}

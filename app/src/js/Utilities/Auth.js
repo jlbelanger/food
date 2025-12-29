@@ -2,8 +2,8 @@ import Cookies from 'js-cookie';
 
 export default class Auth {
 	static login(user, token, remember) {
-		Cookies.set(`${process.env.REACT_APP_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(remember));
-		Cookies.set(`${process.env.REACT_APP_COOKIE_PREFIX}_token`, token, Auth.attributes(remember));
+		Cookies.set(`${import.meta.env.VITE_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(remember));
+		Cookies.set(`${import.meta.env.VITE_COOKIE_PREFIX}_token`, token, Auth.attributes(remember));
 	}
 
 	static refresh() {
@@ -28,9 +28,9 @@ export default class Auth {
 	}
 
 	static logout(status = '') {
-		Cookies.remove(`${process.env.REACT_APP_COOKIE_PREFIX}_user`);
-		Cookies.remove(`${process.env.REACT_APP_COOKIE_PREFIX}_token`);
-		window.location.href = `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '/'}${status ? `?status=${status}` : ''}`;
+		Cookies.remove(`${import.meta.env.VITE_COOKIE_PREFIX}_user`);
+		Cookies.remove(`${import.meta.env.VITE_COOKIE_PREFIX}_token`);
+		window.location.href = `${import.meta.env.VITE_FRONTEND_URL ? import.meta.env.VITE_FRONTEND_URL : '/'}${status ? `?status=${status}` : ''}`;
 	}
 
 	static id() {
@@ -56,7 +56,7 @@ export default class Auth {
 		let user = Auth.user();
 		user = user ? JSON.parse(user) : {};
 		user.trackables = trackables.map((trackable) => (trackable.slug));
-		Cookies.set(`${process.env.REACT_APP_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(user.remember));
+		Cookies.set(`${import.meta.env.VITE_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(user.remember));
 	}
 
 	static trackables() {
@@ -64,15 +64,15 @@ export default class Auth {
 	}
 
 	static user() {
-		return Cookies.get(`${process.env.REACT_APP_COOKIE_PREFIX}_user`);
+		return Cookies.get(`${import.meta.env.VITE_COOKIE_PREFIX}_user`);
 	}
 
 	static token() {
-		return Cookies.get(`${process.env.REACT_APP_COOKIE_PREFIX}_token`);
+		return Cookies.get(`${import.meta.env.VITE_COOKIE_PREFIX}_token`);
 	}
 
 	static isLoggedIn() {
-		return !!Auth.user() && !!Auth.token();
+		return Boolean(Auth.user()) && Boolean(Auth.token());
 	}
 
 	static getValue(key, defaultValue = null) {
@@ -84,6 +84,6 @@ export default class Auth {
 		let user = Auth.user();
 		user = user ? JSON.parse(user) : {};
 		user[key] = value;
-		Cookies.set(`${process.env.REACT_APP_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(user.remember));
+		Cookies.set(`${import.meta.env.VITE_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(user.remember));
 	}
 }

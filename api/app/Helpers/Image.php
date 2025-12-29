@@ -120,8 +120,5 @@ class Image
 			$jpgCompression = 90;
 			imagejpeg($dst, $dstPath, $jpgCompression);
 		}
-
-		imagedestroy($src);
-		imagedestroy($dst);
 	}
 }

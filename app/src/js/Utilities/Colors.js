@@ -1,72 +1,72 @@
 // https://material.io/color/ 100
 const colors1 = [
-	'#ffcdd2', // red
-	'#bbdefb', // blue
-	'#c8e6c9', // green
-	'#fff9c4', // yellow
-	'#e1bee7', // purple
-	'#b2ebf2', // cyan
-	'#f0f4c3', // lime
-	'#ffe0b2', // orange
-	'#d7ccc8', // brown
-	'#f5f5f5', // grey
-	'#f8bbd0', // pink
-	'#d1c4e9', // deep purple
-	'#c5cae9', // indigo
-	'#b3e5fc', // light blue
-	'#b2dfdb', // teal
-	'#dcedc8', // light green
-	'#ffecb3', // amber
-	'#ffccbc', // deep orange
-	'#cfd8dc', // blue grey
+	'#ffcdd2', // Red.
+	'#bbdefb', // Blue.
+	'#c8e6c9', // Green.
+	'#fff9c4', // Yellow.
+	'#e1bee7', // Purple.
+	'#b2ebf2', // Cyan.
+	'#f0f4c3', // Lime.
+	'#ffe0b2', // Orange.
+	'#d7ccc8', // Brown.
+	'#f5f5f5', // Grey.
+	'#f8bbd0', // Pink.
+	'#d1c4e9', // Deep purple.
+	'#c5cae9', // Indigo.
+	'#b3e5fc', // Light blue.
+	'#b2dfdb', // Teal.
+	'#dcedc8', // Light green.
+	'#ffecb3', // Amber.
+	'#ffccbc', // Deep orange.
+	'#cfd8dc', // Blue grey.
 ];
 
 export const colors = colors1.concat(colors1).concat(colors1);
 
 // https://material.io/color/ 50
 const colorsLight1 = [
-	'#ffebee', // red
-	'#e3f2fd', // blue
-	'#e8f5e9', // green
-	'#fffde7', // yellow
-	'#f3e5f5', // purple
-	'#e0f7fa', // cyan
-	'#f9fbe7', // lime
-	'#fff3e0', // orange
-	'#efebe9', // brown
-	'#fafafa', // grey
-	'#fce4ec', // pink
-	'#ede7f6', // deep purple
-	'#e8eaf6', // indigo
-	'#e1f5fe', // light blue
-	'#e0f2f1', // teal
-	'#f1f8e9', // light green
-	'#fff8e1', // amber
-	'#fbe9e7', // deep orange
-	'#eceff1', // blue grey
+	'#ffebee', // Red.
+	'#e3f2fd', // Blue.
+	'#e8f5e9', // Green.
+	'#fffde7', // Yellow.
+	'#f3e5f5', // Purple.
+	'#e0f7fa', // Cyan.
+	'#f9fbe7', // Lime.
+	'#fff3e0', // Orange.
+	'#efebe9', // Brown.
+	'#fafafa', // Grey.
+	'#fce4ec', // Pink.
+	'#ede7f6', // Deep purple.
+	'#e8eaf6', // Indigo.
+	'#e1f5fe', // Light blue.
+	'#e0f2f1', // Teal.
+	'#f1f8e9', // Light green.
+	'#fff8e1', // Amber.
+	'#fbe9e7', // Deep orange.
+	'#eceff1', // Blue grey.
 ];
 
 // https://material.io/color/ 700
 export const colorsDark = [
-	'#d32f2f', // red
-	'#1976d2', // blue
-	'#388e3c', // green
-	'#fbc02d', // yellow
-	'#7b1fa2', // purple
-	'#0097a7', // cyan
-	'#afb42b', // lime
-	'#f57c00', // orange
-	'#5d4037', // brown
-	'#616161', // grey
-	'#c2185b', // pink
-	'#512da8', // deep purple
-	'#303f9f', // indigo
-	'#0288d1', // light blue
-	'#00796b', // teal
-	'#689f38', // light green
-	'#ffa000', // amber
-	'#e64a19', // deep orange
-	'#455a64', // blue grey
+	'#d32f2f', // Red.
+	'#1976d2', // Blue.
+	'#388e3c', // Green.
+	'#fbc02d', // Yellow.
+	'#7b1fa2', // Purple.
+	'#0097a7', // Cyan.
+	'#afb42b', // Lime.
+	'#f57c00', // Orange.
+	'#5d4037', // Brown.
+	'#616161', // Grey.
+	'#c2185b', // Pink.
+	'#512da8', // Deep purple.
+	'#303f9f', // Indigo.
+	'#0288d1', // Light blue.
+	'#00796b', // Teal.
+	'#689f38', // Light green.
+	'#ffa000', // Amber.
+	'#e64a19', // Deep orange.
+	'#455a64', // Blue grey.
 ];
 
 export const colorsLight = colorsLight1.concat(colorsLight1).concat(colorsLight1);

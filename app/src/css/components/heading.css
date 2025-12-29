@@ -1,0 +1,63 @@
+h1 {
+	flex: 1 1 auto;
+	font-size: 18px;
+	font-weight: normal;
+	height: var(--nav-height);
+	line-height: var(--nav-height);
+	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+h2 {
+	font-size: 20px;
+	margin: var(--margin) 0 0;
+}
+
+h3 {
+	font-size: 18px;
+	margin: var(--margin) 0 0;
+}
+
+#heading {
+	background: var(--darkest-gray);
+	color: var(--white);
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: var(--nav-height);
+	z-index: 2;
+
+	.verified {
+		margin-right: 8px;
+		order: -1;
+
+		path {
+			fill: var(--white);
+		}
+	}
+
+	.formosa-button {
+		margin-left: 8px;
+		white-space: nowrap;
+	}
+}
+
+#heading-inner {
+	align-items: center;
+	display: flex;
+	margin: 0 auto;
+	max-width: var(--max-width);
+	padding: 0 var(--heading-inner-padding);
+	width: 100%;
+}
+
+.heading-small {
+	margin-left: 4px;
+}
+
+#heading-spacer {
+	height: var(--nav-height);
+	margin-bottom: var(--margin);
+}

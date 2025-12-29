@@ -1,0 +1,83 @@
+button {
+	cursor: pointer;
+
+	&:disabled {
+		cursor: default;
+	}
+}
+
+.button--link {
+	background-color: transparent;
+	border-color: transparent;
+	color: var(--blue);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: transparent;
+	}
+}
+
+.button--secondary,
+.formosa-button--toggle-password {
+	background: var(--lightest-pink);
+	border-color: var(--light-pink);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background: var(--off-lightest-pink);
+		border-color: var(--lighter-pink);
+	}
+
+	&[disabled] {
+		border-color: var(--formosa-input-border-color);
+	}
+
+	& + .button--secondary {
+		margin-left: 4px;
+	}
+}
+
+.button--tertiary {
+	background-color: var(--yellow);
+	border-color: var(--darkest-muted-yellow);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: var(--dark-yellow);
+	}
+}
+
+.button--header {
+	background-color: var(--dark-gray);
+	border-color: var(--darker-gray);
+	border-top-color: var(--lightish-gray);
+	color: var(--white);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: var(--darkish-gray);
+	}
+
+	&:active {
+		border-bottom-color: var(--darkish-gray);
+		border-top-color: var(--darker-gray);
+	}
+}
+
+.formosa-button.button--small {
+	padding: 4px 8px 0;
+}
+
+.formosa-button.formosa-postfix {
+	display: inline-block;
+	padding-bottom: calc(var(--formosa-input-padding) - 3px);
+	padding-top: var(--formosa-input-padding);
+}
+
+.button--icon {
+	font-size: 0;
+}

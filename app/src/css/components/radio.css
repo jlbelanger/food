@@ -1,0 +1,24 @@
+.radio-list {
+	column-count: 1;
+
+	.formosa-radio__item {
+		margin-bottom: var(--formosa-radio-margin);
+		margin-top: 0;
+	}
+
+	@media (width >= 430px) {
+		column-count: 2;
+	}
+
+	@media (width >= 630px) {
+		column-count: 3;
+	}
+
+	@media (width >= 830px) {
+		column-count: 4;
+	}
+
+	@media (width >= 1030px) {
+		column-count: 5;
+	}
+}
