@@ -127,7 +127,9 @@
 }
 
 #vitamins {
-	box-shadow: -1px -6px 0 var(--black), 1px -6px 0 var(--black);
+	box-shadow:
+		-1px -6px 0 var(--black),
+		1px -6px 0 var(--black);
 	margin-top: 6px;
 
 	.formosa-label-wrapper {

@@ -4,7 +4,7 @@ Cypress.Commands.add('login', (username = '', password = '') => {
 	username = username || Cypress.env('default_username');
 	password = password || Cypress.env('default_password');
 	cy.session([username, password], () => {
-		const timestamp = (new Date()).getTime();
+		const timestamp = new Date().getTime();
 		cy.visit('/');
 		cy.get('[name="username"]').type(username);
 		cy.get('[name="password"]').type(password);
@@ -36,7 +36,9 @@ Cypress.Commands.add('register', (username = '', password = '') => {
 		.then(($body) => {
 			if ($body.find('.formosa-alert--error').length <= 0) {
 				cy.location('pathname').should('eq', Cypress.env('public_path'));
-				cy.get('.formosa-alert--success').first().invoke('text')
+				cy.get('.formosa-alert--success')
+					.first()
+					.invoke('text')
 					.should('equal', `Check your email (${email}) to continue the registration process.`);
 
 				// Verify email.

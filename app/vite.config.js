@@ -12,18 +12,13 @@ export default defineConfig(() => ({
 		postcss: {
 			plugins: [
 				postcssGlobalData({
-					files: [
-						'./src/css/utilities/breakpoints.css',
-					],
+					files: ['./src/css/utilities/breakpoints.css'],
 				}),
 				postcssPresetEnv,
 			],
 		},
 	},
-	plugins: [
-		react(),
-		svgr(),
-	],
+	plugins: [react(), svgr()],
 	server: {
 		open: true,
 		port: 3000,

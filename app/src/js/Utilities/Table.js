@@ -1,7 +1,7 @@
 import get from 'get-value';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
-const escapeRegExp = (string) => (string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'));
+const escapeRegExp = (string) => string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 
 const filterByKey = (records, key, value) => {
 	value = value.toLowerCase();
@@ -33,7 +33,7 @@ export const filterByKeys = (records, filters) => {
 	return records;
 };
 
-export const sortByKey = (records, key, dir) => (
+export const sortByKey = (records, key, dir) =>
 	records.sort((a, b) => {
 		let aVal = get(a, key);
 		if (aVal === undefined || aVal === null) {
@@ -63,5 +63,4 @@ export const sortByKey = (records, key, dir) => (
 		aVal = aVal.toString();
 		bVal = bVal.toString();
 		return dir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-	})
-);
+	});

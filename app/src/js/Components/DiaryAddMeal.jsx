@@ -23,9 +23,7 @@ export default function DiaryAddMeal({ date, entries, foodFields, setActionError
 	}, []);
 
 	if (mealsError) {
-		return (
-			<Alert type="error">Error getting meals.</Alert>
-		);
+		return <Alert type="error">Error getting meals.</Alert>;
 	}
 
 	if (meals.length <= 0) {
@@ -51,7 +49,13 @@ export default function DiaryAddMeal({ date, entries, foodFields, setActionError
 		<fieldset id="add-meal">
 			<legend>Add meal</legend>
 			{meals.map((meal) => (
-				<button className="formosa-button add-meal__button button--secondary" data-id={meal.id} key={meal.id} onClick={addMeal} type="button">
+				<button
+					className="formosa-button add-meal__button button--secondary"
+					data-id={meal.id}
+					key={meal.id}
+					onClick={addMeal}
+					type="button"
+				>
 					{meal.name}
 				</button>
 			))}

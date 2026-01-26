@@ -55,7 +55,7 @@ export default class Auth {
 	static setTrackables(trackables) {
 		let user = Auth.user();
 		user = user ? JSON.parse(user) : {};
-		user.trackables = trackables.map((trackable) => (trackable.slug));
+		user.trackables = trackables.map((trackable) => trackable.slug);
 		Cookies.set(`${import.meta.env.VITE_COOKIE_PREFIX}_user`, JSON.stringify(user), Auth.attributes(user.remember));
 	}
 

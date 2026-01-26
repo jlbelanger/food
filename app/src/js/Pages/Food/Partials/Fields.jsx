@@ -3,7 +3,8 @@ import { useEffect, useRef } from 'react';
 import Auth from '../../../Utilities/Auth.js';
 import PropTypes from 'prop-types';
 
-export default function Fields({ readOnly = false, row = null }) { // eslint-disable-line complexity
+// eslint-disable-next-line complexity
+export default function Fields({ readOnly = false, row = null }) {
 	const image = useRef(null);
 
 	const onScroll = () => {
@@ -72,7 +73,7 @@ export default function Fields({ readOnly = false, row = null }) { // eslint-dis
 		return { slug: toSlug(theRow.name) };
 	};
 
-	const isVisible = (attribute) => (!readOnly || row[attribute] !== null);
+	const isVisible = (attribute) => !readOnly || row[attribute] !== null;
 
 	const servingSizeDisabled = Boolean(row.id);
 	const attributes = {
@@ -100,13 +101,13 @@ export default function Fields({ readOnly = false, row = null }) { // eslint-dis
 
 	return (
 		<>
-			{readOnly && src && (
+			{readOnly && src ? (
 				<p className="center">
 					<a href={src} id="front-image" rel="noreferrer" target="_blank">
 						<img alt="" height={200} src={src} />
 					</a>
 				</p>
-			)}
+			) : null}
 
 			{!readOnly && (
 				<div className="formosa-responsive">
@@ -149,13 +150,7 @@ export default function Fields({ readOnly = false, row = null }) { // eslint-dis
 						note="Upload a photo of the nutritional information."
 						type="file"
 					/>
-					{!row.id && (
-						<Field
-							label="Add to favourites"
-							name="meta.is_favourite"
-							type="checkbox"
-						/>
-					)}
+					{!row.id && <Field label="Add to favourites" name="meta.is_favourite" type="checkbox" />}
 				</div>
 			)}
 
@@ -165,23 +160,11 @@ export default function Fields({ readOnly = false, row = null }) { // eslint-dis
 			</h2>
 
 			<div className={infoImageSrc ? '' : 'nutrition-facts--no-image'} id="nutrition-facts">
-				{infoImageSrc && (
-					<a
-						href={infoImageLink}
-						id="nutrition-facts__link"
-						ref={image}
-						rel="noreferrer"
-						target="_blank"
-					>
-						<img
-							alt="Nutrition facts"
-							id="nutrition-facts__img"
-							loading="lazy"
-							src={infoImageSrc}
-							width={500}
-						/>
+				{infoImageSrc ? (
+					<a href={infoImageLink} id="nutrition-facts__link" ref={image} rel="noreferrer" target="_blank">
+						<img alt="Nutrition facts" id="nutrition-facts__img" loading="lazy" src={infoImageSrc} width={500} />
 					</a>
-				)}
+				) : null}
 
 				<div id="nutrition-facts__fields">
 					<div className="nutrition-facts__list">
@@ -190,14 +173,12 @@ export default function Fields({ readOnly = false, row = null }) { // eslint-dis
 						<div className="nutrition-facts__section">
 							{isVisible('saturated_fat') && <Field label="Saturated" name="saturated_fat" suffix="g" {...attributesSection} />}
 							{isVisible('trans_fat') && <Field label="+ Trans" name="trans_fat" suffix="g" {...attributesSection} />}
-							{isVisible('polyunsaturated_fat') && (
-								<Field label="Polyunsaturated" name="polyunsaturated_fat" suffix="g" {...attributesSection} />
-							)}
+							{isVisible('polyunsaturated_fat')
+								&& <Field label="Polyunsaturated" name="polyunsaturated_fat" suffix="g" {...attributesSection} />}
 							{isVisible('omega_6') && <Field label="Omega-6" name="omega_6" suffix="g" {...attributesSection} />}
 							{isVisible('omega_3') && <Field label="Omega-3" name="omega_3" suffix="g" {...attributesSection} />}
-							{isVisible('monounsaturated_fat') && (
-								<Field label="Monounsaturated" name="monounsaturated_fat" suffix="g" {...attributesSection} />
-							)}
+							{isVisible('monounsaturated_fat')
+								&& <Field label="Monounsaturated" name="monounsaturated_fat" suffix="g" {...attributesSection} />}
 						</div>
 						{isVisible('cholesterol') && <Field label="Cholesterol" name="cholesterol" suffix="mg" {...attributes} />}
 						{isVisible('sodium') && <Field label="Sodium" name="sodium" suffix="mg" {...attributes} />}

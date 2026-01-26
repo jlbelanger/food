@@ -319,7 +319,7 @@ describe('diary', () => {
 				cy.get('#search-favourites').uncheck();
 
 				// Create food.
-				const timestamp = (new Date()).getTime();
+				const timestamp = new Date().getTime();
 				cy.createFood(`Foo ${timestamp}`, 1, {}, true);
 				cy.createFood(`Bar ${timestamp}`, 1, {}, false);
 
@@ -356,7 +356,7 @@ describe('diary', () => {
 				cy.setTrackables(['calories']);
 
 				// Create food.
-				const timestamp = (new Date()).getTime();
+				const timestamp = new Date().getTime();
 				cy.createFood(`Foo ${timestamp}`, 2, { calories: 100 });
 
 				// Add.
@@ -467,7 +467,7 @@ describe('diary', () => {
 			cy.setTrackables(['calories']);
 
 			// Create food/meal.
-			const timestamp = (new Date()).getTime();
+			const timestamp = new Date().getTime();
 			cy.createFood(`Foo ${timestamp}`, 1, { calories: 100 });
 			cy.createFood(`Bar ${timestamp}`, 2, { calories: 50 });
 			cy.createMeal(`Meal ${timestamp}`, [`Foo ${timestamp}`, `Bar ${timestamp}`], true);

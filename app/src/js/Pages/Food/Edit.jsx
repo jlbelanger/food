@@ -50,15 +50,11 @@ export default function Edit() {
 	}, [id]);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	if (row === null) {
-		return (
-			<MetaTitle title="Edit food" />
-		);
+		return <MetaTitle title="Edit food" />;
 	}
 
 	const favourite = () => {
@@ -97,7 +93,7 @@ export default function Edit() {
 	return (
 		<>
 			<MetaTitle title={readOnly ? row.name : `Edit ${row.name}`}>
-				{row.is_verified && <CheckIcon alt="Verified" className="verified" height={16} width={16} />}
+				{row.is_verified ? <CheckIcon alt="Verified" className="verified" height={16} width={16} /> : null}
 				<button
 					aria-label={isFavourite ? 'Unfavourite' : 'Favourite'}
 					className={`heart ${isFavourite ? 'un' : ''}favourite`}
@@ -107,7 +103,7 @@ export default function Edit() {
 					<HeartIcon aria-hidden height={16} width={16} />
 				</button>
 				{!readOnly && <button className="formosa-button button--small" form="edit-form" type="submit">Save</button>}
-				{!readOnly && row.deleteable && (
+				{!readOnly && row.deleteable ? (
 					<>
 						<button
 							className="formosa-button formosa-button--danger button--small"
@@ -119,7 +115,7 @@ export default function Edit() {
 						>
 							Delete
 						</button>
-						{showModal && (
+						{showModal ? (
 							<Modal
 								event={showModal}
 								okButtonClass="formosa-button--danger"
@@ -130,9 +126,9 @@ export default function Edit() {
 								onClickOk={deleteRow}
 								text="Are you sure you want to delete this food?"
 							/>
-						)}
+						) : null}
 					</>
-				)}
+				) : null}
 			</MetaTitle>
 
 			<MyForm
@@ -164,12 +160,12 @@ export default function Edit() {
 				setRow={setRow}
 				successToastText="Food saved successfully."
 			>
-				{actionError && (<Alert type="error">{actionError}</Alert>)}
+				{actionError ? <Alert type="error">{actionError}</Alert> : null}
 				<Fields readOnly={readOnly} row={row} />
 			</MyForm>
 
 			<div className="food-relationships">
-				{Boolean(row.user_entries.length) && (
+				{row.user_entries.length ? (
 					<div className="food-relationships__section">
 						<h2>
 							Entries
@@ -202,9 +198,9 @@ export default function Edit() {
 							rows={row.user_entries}
 						/>
 					</div>
-				)}
+				) : null}
 
-				{Boolean(row.user_meals.length) && (
+				{row.user_meals.length ? (
 					<div className="food-relationships__section">
 						<h2>
 							Meals
@@ -226,7 +222,7 @@ export default function Edit() {
 							rows={row.user_meals}
 						/>
 					</div>
-				)}
+				) : null}
 			</div>
 		</>
 	);

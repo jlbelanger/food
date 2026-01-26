@@ -4,13 +4,7 @@ import { errorMessageText } from '../Utilities/Helpers.jsx';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 
-export default function DiaryWeight({
-	date = null,
-	error = null,
-	setActionError,
-	setWeight,
-	weight = null,
-}) {
+export default function DiaryWeight({ date = null, error = null, setActionError, setWeight, weight = null }) {
 	const { addToast } = useContext(FormosaContext);
 
 	const afterSubmitFailure = (response) => {
@@ -20,9 +14,7 @@ export default function DiaryWeight({
 	};
 
 	if (error) {
-		return (
-			<Alert className="form" type="error">Error getting weight.</Alert>
-		);
+		return <Alert className="form" type="error">Error getting weight.</Alert>;
 	}
 
 	if (weight === null) {

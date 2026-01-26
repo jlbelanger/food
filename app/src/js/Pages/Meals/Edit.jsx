@@ -55,7 +55,7 @@ export default function Edit() {
 					return;
 				}
 				setAllFood(response);
-				setFavouriteFood(response.filter((r) => (r.is_favourite)));
+				setFavouriteFood(response.filter((r) => r.is_favourite));
 			});
 
 		if (Auth.hasTrackables()) {
@@ -67,15 +67,11 @@ export default function Edit() {
 	}, [id]);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	if (row === null) {
-		return (
-			<MetaTitle title="Edit meal" />
-		);
+		return <MetaTitle title="Edit meal" />;
 	}
 
 	const favourite = () => {
@@ -117,9 +113,9 @@ export default function Edit() {
 			});
 	};
 
-	const mealFoodIds = row.foods.map((f) => (f.food.id));
-	const filteredFood = allFood.filter((f) => (!mealFoodIds.includes(f.id)));
-	const filteredFavouriteFood = favouriteFood.filter((f) => (!mealFoodIds.includes(f.id)));
+	const mealFoodIds = row.foods.map((f) => f.food.id);
+	const filteredFood = allFood.filter((f) => !mealFoodIds.includes(f.id));
+	const filteredFavouriteFood = favouriteFood.filter((f) => !mealFoodIds.includes(f.id));
 
 	return (
 		<>
@@ -143,7 +139,7 @@ export default function Edit() {
 				>
 					Delete
 				</button>
-				{showModal && (
+				{showModal ? (
 					<Modal
 						event={showModal}
 						okButtonClass="formosa-button--danger"
@@ -154,7 +150,7 @@ export default function Edit() {
 						onClickOk={deleteRow}
 						text="Are you sure you want to delete this meal?"
 					/>
-				)}
+				) : null}
 			</MetaTitle>
 
 			<MyForm
@@ -187,61 +183,61 @@ export default function Edit() {
 				setRow={setRow}
 				successToastText="Meal saved successfully."
 			>
-				{actionError && (<Alert type="error">{actionError}</Alert>)}
+				{actionError ? <Alert type="error">{actionError}</Alert> : null}
 
 				<Fields row={row} />
 
 				<h2>Foods</h2>
 
-				{foodError ? (
-					<Alert type="error">Error getting food.</Alert>
-				) : (
-					<>
-						<Input
-							aria-label="Add food"
-							className="formosa-prefix"
-							id="new-food"
-							labelFn={foodLabelFn}
-							max={1}
-							optionLabelFn={foodLabelFn}
-							options={favouritesOnly ? filteredFavouriteFood : filteredFood}
-							placeholder="Search foods"
-							setValue={(food) => {
-								const newValue = {
-									id: `temp-${uuidv4()}`,
-									type: 'food-meal',
-									meal: {
-										id: row.id,
-										type: row.type,
-									},
-									food,
-									user_serving_size: food.serving_size,
-								};
-								setRow({
-									...row,
-									foods: [...row.foods, newValue],
-								});
-								setNewFood(null);
-								setTimeout(() => {
-									document.getElementById('new-food').focus();
-								});
-							}}
-							type="autocomplete"
-							value={newFood}
-						/>
-						<Field
-							id="search-favourites"
-							label="Search favourite foods only"
-							labelPosition="after"
-							setValue={(newValue) => {
-								Auth.setValue('favourites_only', newValue);
-								setFavouritesOnly(newValue);
-							}}
-							type="checkbox"
-							value={favouritesOnly}
-						/>
-					</>
-				)}
+				{foodError
+					? <Alert type="error">Error getting food.</Alert>
+					: (
+							<>
+								<Input
+									aria-label="Add food"
+									className="formosa-prefix"
+									id="new-food"
+									labelFn={foodLabelFn}
+									max={1}
+									optionLabelFn={foodLabelFn}
+									options={favouritesOnly ? filteredFavouriteFood : filteredFood}
+									placeholder="Search foods"
+									setValue={(food) => {
+										const newValue = {
+											id: `temp-${uuidv4()}`,
+											type: 'food-meal',
+											meal: {
+												id: row.id,
+												type: row.type,
+											},
+											food,
+											user_serving_size: food.serving_size,
+										};
+										setRow({
+											...row,
+											foods: [...row.foods, newValue],
+										});
+										setNewFood(null);
+										setTimeout(() => {
+											document.getElementById('new-food').focus();
+										});
+									}}
+									type="autocomplete"
+									value={newFood}
+								/>
+								<Field
+									id="search-favourites"
+									label="Search favourite foods only"
+									labelPosition="after"
+									setValue={(newValue) => {
+										Auth.setValue('favourites_only', newValue);
+										setFavouritesOnly(newValue);
+									}}
+									type="checkbox"
+									value={favouritesOnly}
+								/>
+							</>
+						)}
 
 				{row.foods.length > 0 ? (
 					<table className="responsive-table">

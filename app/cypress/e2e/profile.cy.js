@@ -108,7 +108,7 @@ describe('profile', () => {
 			cy.intercept('PUT', '**/api/users/*').as('putUser');
 			cy.intercept('POST', '**/api/entries').as('postEntry');
 
-			const timestamp = (new Date()).getTime();
+			const timestamp = new Date().getTime();
 
 			// Remove all trackables to start.
 			cy.setTrackables([]);

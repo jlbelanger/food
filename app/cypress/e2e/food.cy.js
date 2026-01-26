@@ -5,7 +5,7 @@ describe('food', () => {
 	});
 
 	it('works', () => {
-		const timestamp = (new Date()).getTime();
+		const timestamp = new Date().getTime();
 		cy.intercept('GET', '**/api/food?*').as('getRecords');
 		cy.intercept('GET', '**/api/food/*').as('getRecord');
 		cy.intercept('POST', '**/api/food').as('postRecord');
@@ -134,9 +134,10 @@ describe('food', () => {
 
 		// Sort.
 		let names = [`Barfoo ${timestamp}`, `Foobar ${timestamp}`];
-		cy.get('.table-link').each((item, index) => {
-			cy.wrap(item).should('have.text', names[index]);
-		})
+		cy.get('.table-link')
+			.each((item, index) => {
+				cy.wrap(item).should('have.text', names[index]);
+			})
 			.then(() => {
 				cy.get('[data-key="slug"]').click();
 				names = [`Foobar ${timestamp}`, `Barfoo ${timestamp}`];
@@ -418,7 +419,7 @@ describe('food', () => {
 
 	describe('adding as favourite', () => {
 		it('works', () => {
-			const timestamp = (new Date()).getTime();
+			const timestamp = new Date().getTime();
 			cy.intercept('GET', '**/api/food?*').as('getRecords');
 			cy.intercept('GET', '**/api/food/*').as('getRecord');
 			cy.intercept('POST', '**/api/food').as('postRecord');
@@ -442,7 +443,7 @@ describe('food', () => {
 
 	describe('adding not as favourite', () => {
 		it('works', () => {
-			const timestamp = (new Date()).getTime();
+			const timestamp = new Date().getTime();
 			cy.intercept('GET', '**/api/food?*').as('getRecords');
 			cy.intercept('GET', '**/api/food/*').as('getRecord');
 			cy.intercept('POST', '**/api/food').as('postRecord');

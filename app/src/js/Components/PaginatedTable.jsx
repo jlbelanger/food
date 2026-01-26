@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function PaginatedTable({
-	body,
-	head,
-	perPage = 5,
-	rows = [],
-}) {
+export default function PaginatedTable({ body, head, perPage = 5, rows = [] }) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const numRows = rows.length;
 	const numPages = Math.ceil(numRows / perPage);

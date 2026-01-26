@@ -49,9 +49,7 @@ export default function List() {
 	}, []);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	const totalFiltered = filteredRows.length;
@@ -69,7 +67,7 @@ export default function List() {
 					return;
 				}
 				const newRows = [...rows];
-				const i = newRows.findIndex((row) => (row.id === id));
+				const i = newRows.findIndex((row) => row.id === id);
 				if (i > -1) {
 					newRows[i].is_favourite = !newRows[i].is_favourite;
 					setRows(newRows);
@@ -125,23 +123,29 @@ export default function List() {
 				<Link className="formosa-button button--small" to="/food/new">Add</Link>
 			</MetaTitle>
 
-			{actionError && (<Alert type="error">{actionError}</Alert>)}
+			{actionError ? <Alert type="error">{actionError}</Alert> : null}
 
 			<div id="search-container">
 				<label className="formosa-label" htmlFor="search">Search</label>
 				<Input disabled={isLoading} id="search" setValue={search} type="search" value={searchValue} />
 			</div>
 
-			{(!isLoading && totalFiltered <= 0) ? (
-				<p>No results found.</p>
-			) : (
+			{isLoading || totalFiltered > 0 ? (
 				<table className="responsive-table" id="food-list">
 					<thead>
 						<tr>
-							<th aria-label="Actions" className="column--button" scope="col">{tableButton('is_favourite', '')}</th>
-							<th className="column--name" scope="col">{tableButton('slug', 'Name')}</th>
-							<th className="column--size" scope="col">{tableButton('serving_size', 'Size')}</th>
-							<th className="column--units" scope="col">{tableButton('serving_units', 'Units')}</th>
+							<th aria-label="Actions" className="column--button" scope="col">
+								{tableButton('is_favourite', '')}
+							</th>
+							<th className="column--name" scope="col">
+								{tableButton('slug', 'Name')}
+							</th>
+							<th className="column--size" scope="col">
+								{tableButton('serving_size', 'Size')}
+							</th>
+							<th className="column--units" scope="col">
+								{tableButton('serving_units', 'Units')}
+							</th>
 							<th className="column--trackables" scope="col">
 								<div className="trackable-list">
 									{trackables.map((trackable, i) => (
@@ -185,7 +189,7 @@ export default function List() {
 						))}
 					</tbody>
 				</table>
-			)}
+			) : <p>No results found.</p>}
 		</>
 	);
 }

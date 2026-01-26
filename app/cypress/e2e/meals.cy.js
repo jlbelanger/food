@@ -5,7 +5,7 @@ describe('meals', () => {
 	});
 
 	it('works', () => {
-		const timestamp = (new Date()).getTime();
+		const timestamp = new Date().getTime();
 		cy.intercept('GET', '**/api/meals?*').as('getRecords');
 		cy.intercept('GET', '**/api/meals/*').as('getRecord');
 		cy.intercept('POST', '**/api/meals').as('postRecord');
@@ -48,9 +48,10 @@ describe('meals', () => {
 
 		// Sort.
 		let names = [`Barfoo ${timestamp}`, `Foobar ${timestamp}`];
-		cy.get('.table-link').each((item, index) => {
-			cy.wrap(item).should('have.text', names[index]);
-		})
+		cy.get('.table-link')
+			.each((item, index) => {
+				cy.wrap(item).should('have.text', names[index]);
+			})
 			.then(() => {
 				cy.get('[data-key="name"]').click();
 				names = [`Foobar ${timestamp}`, `Barfoo ${timestamp}`];
@@ -196,7 +197,7 @@ describe('meals', () => {
 
 	describe('adding as favourite', () => {
 		it('works', () => {
-			const timestamp = (new Date()).getTime();
+			const timestamp = new Date().getTime();
 			cy.intercept('GET', '**/api/meals?*').as('getRecords');
 			cy.intercept('GET', '**/api/meals/*').as('getRecord');
 			cy.intercept('POST', '**/api/meals').as('postRecord');
@@ -219,7 +220,7 @@ describe('meals', () => {
 
 	describe('adding not as favourite', () => {
 		it('works', () => {
-			const timestamp = (new Date()).getTime();
+			const timestamp = new Date().getTime();
 			cy.intercept('GET', '**/api/meals?*').as('getRecords');
 			cy.intercept('GET', '**/api/meals/*').as('getRecord');
 			cy.intercept('POST', '**/api/meals').as('postRecord');

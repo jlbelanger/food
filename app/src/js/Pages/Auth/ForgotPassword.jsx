@@ -1,4 +1,4 @@
-import { Alert, Field, Form, Submit } from '@jlbelanger/formosa';
+import { Alert, Field, Form } from '@jlbelanger/formosa';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import Auth from '../../Utilities/Auth.js';
@@ -41,7 +41,7 @@ export default function ForgotPassword() {
 		>
 			<MetaTitle title="Forgot your password?" />
 
-			{message && (<Alert type={message.type}>{message.text}</Alert>)}
+			{message ? <Alert type={message.type}>{message.text}</Alert> : null}
 
 			<Field
 				autoComplete="email"
@@ -51,12 +51,10 @@ export default function ForgotPassword() {
 				type="email"
 			/>
 
-			<Submit
-				label="Send link"
-				postfix={(
-					<Link className="formosa-button button--link" to="/">Back to login</Link>
-				)}
-			/>
+			<div className="formosa-field formosa-field--submit submit-with-postfix">
+				<button className="formosa-button formosa-button--submit" type="submit">Send link</button>
+				<Link className="formosa-button button--link" to="/">Back to login</Link>
+			</div>
 		</Form>
 	);
 }

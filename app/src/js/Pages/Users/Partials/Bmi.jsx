@@ -64,14 +64,14 @@ export default function Bmi({ user }) {
 
 		let bmr;
 		if (row.sex === 'f') {
-			bmr = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * row.age);
+			bmr = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * row.age); // prettier-ignore
 		} else if (row.sex === 'm') {
-			bmr = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * row.age);
+			bmr = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * row.age); // prettier-ignore
 		} else {
 			return null;
 		}
 
-		return Math.round(bmr + bmr * row.activity_level * 0.01);
+		return Math.round(bmr + (bmr * row.activity_level * 0.01)); // prettier-ignore
 	};
 
 	const bmi = calculateBmi();
@@ -120,13 +120,11 @@ export default function Bmi({ user }) {
 
 			<FormAlert />
 
-			{showBmi ? (
+			{showBmi
 				/* eslint-disable @stylistic/jsx-one-expression-per-line */
-				<p id="bmi">Your BMI is <b>{bmi}</b>{bmiNote}.</p>
-			) : (
-				<p>Fill out the fields below to see your BMI.</p>
-			)}
-			{maintenanceCalories && (
+				? <p id="bmi">Your BMI is <b>{bmi}</b>{bmiNote}.</p>
+				: <p>Fill out the fields below to see your BMI.</p>}
+			{maintenanceCalories ? (
 				<p id="calories">
 					You should be eating <b>{`${maintenanceCalories.toLocaleString()} calories`}</b> a day to maintain your current weight.
 					<br />
@@ -139,8 +137,7 @@ export default function Bmi({ user }) {
 						you should eat 500 calories less in a day than the calories you would eat to maintain your weight.
 					</span>
 				</p>
-				/* eslint-enable @stylistic/jsx-one-expression-per-line */
-			)}
+			) : null}
 
 			<div className="formosa-responsive">
 				<Field

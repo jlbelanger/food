@@ -159,20 +159,15 @@ Cypress.Commands.add('setTrackables', (trackables = []) => {
 	cy.get('.formosa-toast__close').click();
 });
 
-export const mockServerError = (method, url) => (
-	cy.intercept(
-		method,
-		url,
-		{
-			statusCode: 500,
-			body: {
-				errors: [
-					{
-						title: 'Unable to connect to the server. Please try again later.',
-						status: '500',
-					},
-				],
-			},
-		}
-	)
-);
+export const mockServerError = (method, url) =>
+	cy.intercept(method, url, {
+		statusCode: 500,
+		body: {
+			errors: [
+				{
+					title: 'Unable to connect to the server. Please try again later.',
+					status: '500',
+				},
+			],
+		},
+	});

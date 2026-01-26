@@ -12,7 +12,7 @@ export const errorMessageText = (response, logout = true) => {
 	if (logout && response.status === 401) {
 		return Auth.logout(response.status);
 	}
-	return `Error: ${response.errors.map((e) => (e.title)).join(' ')}`;
+	return `Error: ${response.errors.map((e) => e.title).join(' ')}`;
 };
 
 export const pad = (n, width = 2, z = '0') => {
@@ -30,28 +30,12 @@ export const pluralize = (servingUnits, servingSize) => {
 		return servingUnits;
 	}
 
-	const doNotPluralize = [
-		'',
-		'g',
-		'ml',
-		'oz',
-		'tbsp',
-		'tsp',
-	];
+	const doNotPluralize = ['', 'g', 'ml', 'oz', 'tbsp', 'tsp'];
 	if (doNotPluralize.includes(servingUnits)) {
 		return servingUnits;
 	}
 
-	const esPluralize = [
-		'box',
-		'dash',
-		'dish',
-		'inch',
-		'potato',
-		'pouch',
-		'sandwich',
-		'tomato',
-	];
+	const esPluralize = ['box', 'dash', 'dish', 'inch', 'potato', 'pouch', 'sandwich', 'tomato'];
 	if (esPluralize.includes(servingUnits)) {
 		return `${servingUnits}es`;
 	}
@@ -81,20 +65,18 @@ export const prettyDate = (date, weekday = 'short') => {
 	return new Date(`${date}T12:00:00Z`).toLocaleString('en-CA', options);
 };
 
-export const mapTrackables = (response) => (
-	Auth.trackables().map((slug) => (response.find((t) => (slug === t.slug))))
-);
+export const mapTrackables = (response) => Auth.trackables().map((slug) => response.find((t) => slug === t.slug));
 
 export const foodLabelFn = (food) => (
 	<>
 		{food.name}
-		{food.is_verified && <CheckIcon alt="Verified" className="verified" height={16} width={16} />}
+		{food.is_verified ? <CheckIcon alt="Verified" className="verified" height={16} width={16} /> : null}
 	</>
 );
 
 export const foodLabelLinkFn = (food) => (
 	<Link to={`/food/${food.id}`}>
 		{food.name}
-		{food.is_verified && <CheckIcon alt="Verified" className="verified" height={16} width={16} />}
+		{food.is_verified ? <CheckIcon alt="Verified" className="verified" height={16} width={16} /> : null}
 	</Link>
 );

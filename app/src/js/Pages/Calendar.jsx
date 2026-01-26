@@ -11,7 +11,7 @@ import MetaTitle from '../Components/MetaTitle.jsx';
 export default function Calendar() {
 	const api = Api.instance();
 	const navigate = useNavigate();
-	const thisYear = (new Date()).getFullYear();
+	const thisYear = new Date().getFullYear();
 	const [urlSearchParams] = useSearchParams();
 	const currentYear = parseInt(urlSearchParams.get('year') || thisYear, 10);
 
@@ -48,19 +48,15 @@ export default function Calendar() {
 	}, []);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
-	const prettyMonth = (ym) => (
-		new Date(`${ym}-01T12:00:00Z`).toLocaleString('en-CA', {
-			year: 'numeric',
-			month: 'long',
-		})
-	);
+	const prettyMonth = (ym) => new Date(`${ym}-01T12:00:00Z`).toLocaleString('en-CA', {
+		year: 'numeric',
+		month: 'long',
+	});
 
-	const prettyDay = (date) => (parseInt(date.substr(8, 2), 10));
+	const prettyDay = (date) => parseInt(date.substr(8, 2), 10);
 
 	const changeYear = (modifier = 1) => {
 		const newYear = currentYear + modifier;
@@ -76,9 +72,8 @@ export default function Calendar() {
 		getEntries(changeYear(1));
 	};
 
-	const withUnits = (value, units) => (
-		value === null ? '' : `${value.toLocaleString()} ${units || ''}`.trim()
-	);
+	// eslint-disable-next-line @stylistic/no-extra-parens
+	const withUnits = (value, units) => (value === null ? '' : `${value.toLocaleString()} ${units || ''}`.trim());
 
 	const calculateWeekAverage = (week, key, units) => {
 		if (!week) {
@@ -152,18 +147,16 @@ export default function Calendar() {
 							<tr key={`${month.month}-${week.week}`}>
 								{week.days.map((day) => (
 									<td className="calendar__day" key={day.date || day.i}>
-										{day.date && (
+										{day.date ? (
 											<>
+												{day.trackables
+													? <Link className="calendar__link" to={`/?date=${day.date}`}>{prettyDay(day.date)}</Link>
+													: <span>{prettyDay(day.date)}</span>}
 												{day.trackables ? (
-													<Link className="calendar__link" to={`/?date=${day.date}`}>{prettyDay(day.date)}</Link>
-												) : (
-													<span>{prettyDay(day.date)}</span>
-												)}
-												{day.trackables && (
 													<div className="calendar__item" style={{ backgroundColor: colors[0] }}>
 														{day.trackables.weight ? `${day.trackables.weight} ${Auth.weightUnits()}` : '-'}
 													</div>
-												)}
+												) : null}
 												{trackables.map((trackable, i) => {
 													if (!day.trackables) {
 														return null;
@@ -179,11 +172,11 @@ export default function Calendar() {
 													);
 												})}
 											</>
-										)}
+										) : null}
 									</td>
 								))}
 								<td className={`calendar__day${week.data ? ' calendar__day--avg' : ''}`}>
-									{week.data && (
+									{week.data ? (
 										<>
 											<div className="calendar__item" style={{ backgroundColor: colorsLight[0] }}>
 												{calculateWeekAverage(week.days, 'weight', Auth.weightUnits()) || '-'}
@@ -194,7 +187,7 @@ export default function Calendar() {
 												</div>
 											))}
 										</>
-									)}
+									) : null}
 								</td>
 							</tr>
 						))}

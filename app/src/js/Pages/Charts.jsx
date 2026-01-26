@@ -22,12 +22,10 @@ import zoomPlugin from 'chartjs-plugin-zoom';
 export default function Charts() {
 	const api = Api.instance();
 	const chartSlugs = ['weight'].concat(Auth.trackables());
-	const chartRefs = useMemo(() => (
-		chartSlugs.map(() => createRef())
-	), chartSlugs);
+	const chartRefs = useMemo(() => chartSlugs.map(() => createRef()), chartSlugs);
 	const [datasets, setDatasets] = useState([]);
 	const [error, setError] = useState(false);
-	const [max] = useState((new Date()).getTime()); // eslint-disable-line react/hook-use-state
+	const [max] = useState(new Date().getTime()); // eslint-disable-line react/hook-use-state
 	const [min, setMin] = useState('original');
 
 	const getEntries = (ignore) => {
@@ -116,9 +114,7 @@ export default function Charts() {
 	}, []);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	const graphOptions = (minY, maxY) => ({

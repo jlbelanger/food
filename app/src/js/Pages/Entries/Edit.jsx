@@ -39,20 +39,16 @@ export default function Edit() {
 					return;
 				}
 				setFood(response);
-				setFavouriteFood(response.filter((r) => (r.is_favourite)));
+				setFavouriteFood(response.filter((r) => r.is_favourite));
 			});
 	}, [id]);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	if (row === null) {
-		return (
-			<MetaTitle title="Edit entry" />
-		);
+		return <MetaTitle title="Edit entry" />;
 	}
 
 	return (
@@ -61,7 +57,7 @@ export default function Edit() {
 				<button className="formosa-button button--small" form="edit-form" type="submit">Save</button>
 			</MetaTitle>
 
-			{foodError && (<Alert type="error">Error getting food.</Alert>)}
+			{foodError ? <Alert type="error">Error getting food.</Alert> : null}
 
 			<MyForm
 				className="formosa-responsive"
@@ -81,9 +77,9 @@ export default function Edit() {
 					label="Date"
 					maxLength={10}
 					name="date"
-					postfix={row.date ? (
-						<Link className="formosa-button formosa-postfix button--secondary" to={`/?date=${row.date}`}>Go</Link>
-					) : null}
+					postfix={row.date
+						? <Link className="formosa-button formosa-postfix button--secondary" to={`/?date=${row.date}`}>Go</Link>
+						: null}
 					required
 					size={10}
 					type="date"

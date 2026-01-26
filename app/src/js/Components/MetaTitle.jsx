@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
-export default function MetaTitle({
-	before = null,
-	children = null,
-	small = '',
-	title = '',
-}) {
+export default function MetaTitle({ before = null, children = null, small = '', title = '' }) {
 	useEffect(() => {
 		let metaTitle = title;
 		if (import.meta.env.VITE_TITLE) {
@@ -25,7 +20,7 @@ export default function MetaTitle({
 					{before}
 					<h1>
 						{title}
-						{small && <small className="heading-small">{small}</small>}
+						{small ? <small className="heading-small">{small}</small> : null}
 					</h1>
 					{children}
 				</div>

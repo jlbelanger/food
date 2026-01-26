@@ -35,8 +35,8 @@
 }
 
 .calendar__legend-spacer {
-	/* stylelint-disable-next-line @stylistic/max-line-length */
-	height: calc((((var(--calendar-legend-item-margin) + var(--calendar-legend-padding)) * 2) + var(--font-size)) - var(--article-padding) - var(--margin));
+	/* prettier-ignore */
+	height: calc(((var(--calendar-legend-item-margin) + var(--calendar-legend-padding)) * 2) + var(--font-size) - var(--article-padding) - var(--margin)); /* stylelint-disable-line @stylistic/max-line-length */
 	margin-bottom: var(--margin);
 }
 
@@ -66,10 +66,10 @@
 }
 
 .calendar--hide {
-	opacity: .5;
+	opacity: 0.5;
 
 	.calendar__caption {
-		opacity: .5;
+		opacity: 0.5;
 	}
 }
 

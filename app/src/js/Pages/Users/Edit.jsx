@@ -48,15 +48,11 @@ export default function Edit() {
 	}, [id]);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	if (row === null) {
-		return (
-			<MetaTitle title="Profile" />
-		);
+		return <MetaTitle title="Profile" />;
 	}
 
 	return (
@@ -81,7 +77,7 @@ export default function Edit() {
 			<hr />
 
 			<h3>Delete data</h3>
-			{deleteError && (<Alert type="error">{deleteError}</Alert>)}
+			{deleteError ? <Alert type="error">{deleteError}</Alert> : null}
 			<DeleteData setDeleteError={setDeleteError} user={row} />
 
 			<p>
@@ -97,7 +93,7 @@ export default function Edit() {
 				</button>
 			</p>
 
-			{showModal && (
+			{showModal ? (
 				<Modal
 					event={showModal}
 					okButtonClass="formosa-button--danger"
@@ -108,7 +104,7 @@ export default function Edit() {
 					onClickOk={deleteRow}
 					text="Are you sure you want to delete your account?"
 				/>
-			)}
+			) : null}
 		</>
 	);
 }

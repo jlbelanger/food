@@ -9,7 +9,7 @@ export default function MyForm({ children, ...otherProps }) {
 	return (
 		<Form {...otherProps}>
 			{children}
-			{showWarningPrompt && <MyFormPrompt />}
+			{showWarningPrompt ? <MyFormPrompt /> : null}
 		</Form>
 	);
 }

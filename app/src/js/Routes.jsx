@@ -18,53 +18,51 @@ import Register from './Pages/Auth/Register.jsx';
 import ResetPassword from './Pages/Auth/ResetPassword.jsx';
 import VerifyEmail from './Pages/Auth/VerifyEmail.jsx';
 
-export default createBrowserRouter(
-	[
-		{
-			path: '/',
-			Component: Layout,
-			children: [
-				{
-					index: true,
-					Component: Login,
-				},
-				{
-					path: 'register',
-					Component: Register,
-				},
-				{
-					path: 'forgot-password',
-					Component: ForgotPassword,
-				},
-				{
-					path: 'reset-password/:token',
-					Component: ResetPassword,
-				},
-				{
-					path: 'verify-email',
-					Component: VerifyEmail,
-				},
-				{
-					path: '',
-					Component: PrivateRoute,
-					children: [
-						{ path: 'calendar', Component: Calendar },
-						{ path: 'charts', Component: Charts },
-						{ path: 'entries/:id', Component: EntryEdit },
-						{ path: 'profile', Component: Profile },
-						{ path: 'food', Component: FoodList },
-						{ path: 'food/new', Component: FoodNew },
-						{ path: 'food/:id', Component: FoodEdit },
-						{ path: 'meals', Component: MealList },
-						{ path: 'meals/new', Component: MealNew },
-						{ path: 'meals/:id', Component: MealEdit },
-					],
-				},
-				{
-					path: '*',
-					Component: Error404,
-				},
-			],
-		},
-	]
-);
+export default createBrowserRouter([
+	{
+		path: '/',
+		Component: Layout,
+		children: [
+			{
+				index: true,
+				Component: Login,
+			},
+			{
+				path: 'register',
+				Component: Register,
+			},
+			{
+				path: 'forgot-password',
+				Component: ForgotPassword,
+			},
+			{
+				path: 'reset-password/:token',
+				Component: ResetPassword,
+			},
+			{
+				path: 'verify-email',
+				Component: VerifyEmail,
+			},
+			{
+				path: '',
+				Component: PrivateRoute,
+				children: [
+					{ path: 'calendar', Component: Calendar },
+					{ path: 'charts', Component: Charts },
+					{ path: 'entries/:id', Component: EntryEdit },
+					{ path: 'profile', Component: Profile },
+					{ path: 'food', Component: FoodList },
+					{ path: 'food/new', Component: FoodNew },
+					{ path: 'food/:id', Component: FoodEdit },
+					{ path: 'meals', Component: MealList },
+					{ path: 'meals/new', Component: MealNew },
+					{ path: 'meals/:id', Component: MealEdit },
+				],
+			},
+			{
+				path: '*',
+				Component: Error404,
+			},
+		],
+	},
+]);

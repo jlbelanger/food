@@ -81,7 +81,7 @@ export default function Diary() {
 					return;
 				}
 				setFood(response);
-				setFavouriteFood(response.filter((r) => (r.is_favourite)));
+				setFavouriteFood(response.filter((r) => r.is_favourite));
 			});
 
 		getEntries(currentDate);
@@ -162,19 +162,21 @@ export default function Diary() {
 
 			<div id="diary">
 				<div id="diary-top">
-					{foodError ? (
-						<Alert className="form" type="error">Error getting food.</Alert>
-					) : (
-						<DiaryAddFood
-							date={currentDate}
-							entries={entries}
-							favouriteFood={favouriteFood}
-							food={food}
-							key={`add-food-${currentDate}`}
-							setActionError={setActionError}
-							setEntries={setEntries}
-						/>
-					)}
+					{foodError
+						? <Alert className="form" type="error">Error getting food.</Alert>
+						: (
+							/* eslint-disable @stylistic/indent */
+							<DiaryAddFood
+								date={currentDate}
+								entries={entries}
+								favouriteFood={favouriteFood}
+								food={food}
+								key={`add-food-${currentDate}`}
+								setActionError={setActionError}
+								setEntries={setEntries}
+							/>
+						)}
+						{/* eslint-enable @stylistic/indent */}
 					<DiaryAddExtra
 						date={currentDate}
 						extras={extras}
@@ -182,14 +184,26 @@ export default function Diary() {
 						setActionError={setActionError}
 						setExtras={setExtras}
 					/>
-					<DiaryWeight date={currentDate} error={entriesError} setActionError={setActionError} setWeight={setWeight} weight={weight} />
+					<DiaryWeight
+						date={currentDate}
+						error={entriesError}
+						setActionError={setActionError}
+						setWeight={setWeight}
+						weight={weight}
+					/>
 				</div>
 
-				<DiaryAddMeal date={currentDate} entries={entries} foodFields={foodFields} setActionError={setActionError} setEntries={setEntries} />
+				<DiaryAddMeal
+					date={currentDate}
+					entries={entries}
+					foodFields={foodFields}
+					setActionError={setActionError}
+					setEntries={setEntries}
+				/>
 			</div>
 
-			{actionError && (<Alert type="error">{actionError}</Alert>)}
-			{entriesError && (<Alert type="error">Error getting entries.</Alert>)}
+			{actionError ? <Alert type="error">{actionError}</Alert> : null}
+			{entriesError ? <Alert type="error">Error getting entries.</Alert> : null}
 
 			{(entries.length > 0 || extras.length > 0) && (
 				<table className="responsive-table" id="diary-table">

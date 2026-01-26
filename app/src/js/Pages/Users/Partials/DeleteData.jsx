@@ -47,7 +47,7 @@ export default function DeleteData({ setDeleteError }) {
 				</button>
 			</p>
 
-			{showModal && (
+			{showModal ? (
 				<Modal
 					event={showModal}
 					okButtonClass="formosa-button--danger"
@@ -58,7 +58,7 @@ export default function DeleteData({ setDeleteError }) {
 					onClickOk={onClickOk}
 					text="Are you sure you want to delete this data?"
 				/>
-			)}
+			) : null}
 		</>
 	);
 }

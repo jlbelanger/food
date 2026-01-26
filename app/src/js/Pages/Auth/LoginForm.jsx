@@ -1,4 +1,4 @@
-import { Alert, Api, Field, FormContext, Submit } from '@jlbelanger/formosa';
+import { Alert, Api, Field, FormContext } from '@jlbelanger/formosa';
 import { errorMessageText } from '../../Utilities/Helpers.jsx';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
@@ -37,15 +37,15 @@ export default function LoginForm({
 
 	return (
 		<>
-			{message && (<Alert type={message.type}>{message.text}</Alert>)}
+			{message ? <Alert type={message.type}>{message.text}</Alert> : null}
 
-			{showVerificationButton && (
+			{showVerificationButton ? (
 				<p className={`formosa-alert formosa-alert--${showVerificationButton === true ? 'error' : 'success'} post-alert-button`}>
 					<button className="formosa-button button--secondary" onClick={resendVerificationEmail} type="button">
 						Resend verification email
 					</button>
 				</p>
-			)}
+			) : null}
 
 			{/* eslint-disable-next-line @stylistic/jsx-one-expression-per-line */}
 			<p>For a demo, use the username <b>demo</b> and the password <b>demo</b>.</p>
@@ -74,12 +74,10 @@ export default function LoginForm({
 				type="checkbox"
 			/>
 
-			<Submit
-				label="Log in"
-				postfix={(
-					<Link className="formosa-button button--link" to="/forgot-password">Forgot password?</Link>
-				)}
-			/>
+			<div className="formosa-field formosa-field--submit submit-with-postfix">
+				<button className="formosa-button formosa-button--submit" type="submit">Log in</button>
+				<Link className="formosa-button button--link" to="/forgot-password">Forgot password?</Link>
+			</div>
 		</>
 	);
 }

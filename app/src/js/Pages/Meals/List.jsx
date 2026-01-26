@@ -37,9 +37,7 @@ export default function List() {
 	}, []);
 
 	if (error) {
-		return (
-			<Error error={error} />
-		);
+		return <Error error={error} />;
 	}
 
 	const totalFiltered = filteredRows.length;
@@ -49,7 +47,7 @@ export default function List() {
 		setActionError(false);
 		const id = e.target.getAttribute('data-id');
 		const newRows = [...rows];
-		const i = newRows.findIndex((row) => (row.id === id));
+		const i = newRows.findIndex((row) => row.id === id);
 		const isFavourite = !newRows[i].is_favourite;
 		if (i < 0) {
 			setActionError(`Error: Unable to ${isFavourite ? '' : 'un'}favourite meal.`);
@@ -125,23 +123,25 @@ export default function List() {
 				<Link className="formosa-button button--small" to="/meals/new">Add</Link>
 			</MetaTitle>
 
-			{actionError && (<Alert type="error">{actionError}</Alert>)}
+			{actionError ? <Alert type="error">{actionError}</Alert> : null}
 
-			{(isLoading || total > 0) && (
+			{isLoading || total > 0 ? (
 				<div id="search-container">
 					<label className="formosa-label" htmlFor="search">Search</label>
 					<Input disabled={isLoading} id="search" setValue={search} type="search" value={searchValue} />
 				</div>
-			)}
+			) : null}
 
-			{(!isLoading && totalFiltered <= 0) ? (
-				<p>No results found.</p>
-			) : (
+			{isLoading || totalFiltered > 0 ? (
 				<table>
 					<thead>
 						<tr>
-							<th aria-label="Actions" className="column--button" scope="col">{tableButton('is_favourite', '')}</th>
-							<th className="column--name" scope="col">{tableButton('name', 'Name')}</th>
+							<th aria-label="Actions" className="column--button" scope="col">
+								{tableButton('is_favourite', '')}
+							</th>
+							<th className="column--name" scope="col">
+								{tableButton('name', 'Name')}
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -166,12 +166,16 @@ export default function List() {
 										<HeartIcon aria-hidden height={16} width={16} />
 									</button>
 								</td>
-								<td className="column--name"><Link className="table-link" to={`/meals/${row.id}`}>{row.name}</Link></td>
+								<td className="column--name">
+									<Link className="table-link" to={`/meals/${row.id}`}>
+										{row.name}
+									</Link>
+								</td>
 							</tr>
 						))}
 					</tbody>
 				</table>
-			)}
+			) : <p>No results found.</p>}
 		</>
 	);
 }

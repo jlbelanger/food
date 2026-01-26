@@ -25,9 +25,7 @@ export default function Trackables({ user }) {
 	}, []);
 
 	if (trackablesError) {
-		return (
-			<Alert type="error">Error getting trackables.</Alert>
-		);
+		return <Alert type="error">Error getting trackables.</Alert>;
 	}
 
 	const checkAll = () => {
@@ -39,7 +37,7 @@ export default function Trackables({ user }) {
 	};
 
 	const afterSubmitSuccess = () => {
-		Auth.setTrackables(row.trackables.sort((a, b) => (a.id > b.id)));
+		Auth.setTrackables(row.trackables.sort((a, b) => a.id > b.id));
 	};
 
 	return (
@@ -59,8 +57,12 @@ export default function Trackables({ user }) {
 		>
 			<h2 className="flex">
 				<span style={{ alignSelf: 'center', flex: '1 1 auto' }}>Tracking</span>
-				<button className="formosa-button button--small button--secondary" onClick={checkAll} type="button">Check All</button>
-				<button className="formosa-button button--small button--secondary" onClick={uncheckAll} type="button">Uncheck All</button>
+				<button className="formosa-button button--small button--secondary" onClick={checkAll} type="button">
+					Check All
+				</button>
+				<button className="formosa-button button--small button--secondary" onClick={uncheckAll} type="button">
+					Uncheck All
+				</button>
 			</h2>
 
 			<FormAlert />

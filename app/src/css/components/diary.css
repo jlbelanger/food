@@ -57,8 +57,8 @@
 		display: flex;
 
 		.form {
-			margin-left: calc(var(--margin) * .5);
-			margin-right: calc(var(--margin) * .5);
+			margin-left: calc(var(--margin) * 0.5);
+			margin-right: calc(var(--margin) * 0.5);
 		}
 
 		& > :first-child {
