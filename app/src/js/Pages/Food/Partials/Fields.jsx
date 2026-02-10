@@ -114,22 +114,6 @@ export default function Fields({ readOnly = false, row = null }) {
 					{Auth.getValue('is_admin') && Boolean(row.id) && <Field label="User ID" name="user.id" size={5} />}
 					<Field afterChange={autopopulate} label="Name" name="name" readOnly={readOnly} required />
 					<Field label="Slug" name="slug" readOnly required />
-					<div className="formosa-field formosa-field--serving_size">
-						<Label htmlFor="serving_size" label="Serving size" required />
-						<div className="formosa-input-wrapper">
-							<div className="flex">
-								<Input disabled={servingSizeDisabled} name="serving_size" placeholder="eg. 1" required size={5} />
-								<Input name="serving_units" placeholder="eg. cup" />
-							</div>
-							<div className="formosa-field__note">
-								{row.id
-									? 'Serving size cannot be changed because that would affect previous entries.'
-									: 'Enter the serving size exactly as it appears on the package (eg. 1 package, 3/4 cups, 50 g).'}
-							</div>
-							<Error name="serving_size" />
-							<Error name="serving_units" />
-						</div>
-					</div>
 					<Field
 						accept="image/*"
 						imageHeight={200}
@@ -150,6 +134,22 @@ export default function Fields({ readOnly = false, row = null }) {
 						note="Upload a photo of the nutritional information."
 						type="file"
 					/>
+					<div className="formosa-field formosa-field--serving_size">
+						<Label htmlFor="serving_size" label="Serving size" required />
+						<div className="formosa-input-wrapper">
+							<div className="flex">
+								<Input disabled={servingSizeDisabled} name="serving_size" placeholder="eg. 1" required size={5} />
+								<Input autoCapitalize="none" name="serving_units" placeholder="eg. cup" />
+							</div>
+							<div className="formosa-field__note">
+								{row.id
+									? 'Serving size cannot be changed because that would affect previous entries.'
+									: 'Enter the serving size exactly as it appears on the package (eg. 1 package, 3/4 cups, 50 g).'}
+							</div>
+							<Error name="serving_size" />
+							<Error name="serving_units" />
+						</div>
+					</div>
 					{!row.id && <Field label="Add to favourites" name="meta.is_favourite" type="checkbox" />}
 				</div>
 			)}
@@ -180,9 +180,6 @@ export default function Fields({ readOnly = false, row = null }) {
 							{isVisible('monounsaturated_fat')
 								&& <Field label="Monounsaturated" name="monounsaturated_fat" suffix="g" {...attributesSection} />}
 						</div>
-						{isVisible('cholesterol') && <Field label="Cholesterol" name="cholesterol" suffix="mg" {...attributes} />}
-						{isVisible('sodium') && <Field label="Sodium" name="sodium" suffix="mg" {...attributes} />}
-						{isVisible('potassium') && <Field label="Potassium" name="potassium" suffix="mg" {...attributes} />}
 						{isVisible('carbohydrate') && <Field label="Carbohydrate" name="carbohydrate" suffix="g" {...attributes} />}
 						{(isVisible('fibre') || isVisible('sugars')) && (
 							<div className="nutrition-facts__section">
@@ -191,9 +188,12 @@ export default function Fields({ readOnly = false, row = null }) {
 							</div>
 						)}
 						{isVisible('protein') && <Field label="Protein" name="protein" suffix="g" {...attributes} />}
+						{isVisible('cholesterol') && <Field label="Cholesterol" name="cholesterol" suffix="mg" {...attributes} />}
+						{isVisible('sodium') && <Field label="Sodium" name="sodium" suffix="mg" {...attributes} />}
 					</div>
 
 					<div className="nutrition-facts__list" id="vitamins">
+						{isVisible('potassium') && <Field label="Potassium" name="potassium" suffix="mg" {...attributesVitamin} />}
 						{isVisible('vitamin_a') && <Field label="Vitamin A" name="vitamin_a" suffix="%" {...attributesVitamin} />}
 						{isVisible('vitamin_c') && <Field label="Vitamin C" name="vitamin_c" suffix="%" {...attributesVitamin} />}
 						{isVisible('calcium') && <Field label="Calcium" name="calcium" suffix="%" {...attributesVitamin} />}
