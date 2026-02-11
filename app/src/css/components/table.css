@@ -132,6 +132,10 @@ th {
 		padding-right: 4px;
 	}
 
+	tfoot & {
+		white-space: nowrap;
+	}
+
 	thead &,
 	tfoot & {
 		@media (--breakpoint) {
