@@ -30,8 +30,8 @@ class EntryTest extends TestCase
 		$this->user = User::factory()->create();
 		$this->otherUser = User::factory()->create(['username' => 'bar', 'email' => 'bar@example.com']);
 		$this->food = \App\Models\Food::factory()->create();
-		$this->entry = Entry::factory()->create(['food_id' => $this->food->id, 'user_id' => $this->user->id]);
-		$this->otherEntry = Entry::factory()->create(['food_id' => $this->food->id, 'user_id' => $this->otherUser->id]);
+		$this->entry = Entry::factory()->create(['food_id' => $this->food->getKey(), 'user_id' => $this->user->getKey()]);
+		$this->otherEntry = Entry::factory()->create(['food_id' => $this->food->getKey(), 'user_id' => $this->otherUser->getKey()]);
 	}
 
 	public function testIndex() : void
@@ -40,7 +40,7 @@ class EntryTest extends TestCase
 		$response->assertExactJson([
 			'data' => [
 				[
-					'id' => (string) $this->entry->id,
+					'id' => (string) $this->entry->getKey(),
 					'type' => 'entries',
 					'attributes' => [
 						'user_serving_size' => 1,
@@ -90,7 +90,7 @@ class EntryTest extends TestCase
 	#[DataProvider('storeProvider')]
 	public function testStore(array $args) : void
 	{
-		$args['body'] = $this->replaceToken('%food_id%', (string) $this->food->id, $args['body']);
+		$args['body'] = $this->replaceToken('%food_id%', (string) $this->food->getKey(), $args['body']);
 		$response = $this->actingAs($this->user)->json('POST', $this->path, $args['body']);
 		if (!empty($response['data']['id'])) {
 			$args['response'] = $this->replaceToken('%id%', $response['data']['id'], $args['response']);
@@ -122,8 +122,8 @@ class EntryTest extends TestCase
 	#[DataProvider('showProvider')]
 	public function testShow(array $args) : void
 	{
-		$args['response'] = $this->replaceToken('%id%', (string) $this->entry->id, $args['response']);
-		$response = $this->actingAs($this->user)->json('GET', $this->path . '/' . $this->{$args['key']}->id);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->entry->getKey(), $args['response']);
+		$response = $this->actingAs($this->user)->json('GET', $this->path . '/' . $this->{$args['key']}->getKey());
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
 	}
@@ -161,9 +161,9 @@ class EntryTest extends TestCase
 	#[DataProvider('updateProvider')]
 	public function testUpdate(array $args) : void
 	{
-		$args['body'] = $this->replaceToken('%id%', (string) $this->entry->id, $args['body']);
-		$args['response'] = $this->replaceToken('%id%', (string) $this->entry->id, $args['response']);
-		$response = $this->actingAs($this->user)->json('PUT', $this->path . '/' . $this->{$args['key']}->id, $args['body']);
+		$args['body'] = $this->replaceToken('%id%', (string) $this->entry->getKey(), $args['body']);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->entry->getKey(), $args['response']);
+		$response = $this->actingAs($this->user)->json('PUT', $this->path . '/' . $this->{$args['key']}->getKey(), $args['body']);
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
 	}
@@ -182,7 +182,7 @@ class EntryTest extends TestCase
 	#[DataProvider('destroyProvider')]
 	public function testDestroy(array $args) : void
 	{
-		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->{$args['key']}->id);
+		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->{$args['key']}->getKey());
 		if ($args['response']) {
 			$response->assertExactJson($args['response']);
 			$response->assertStatus($args['code']);

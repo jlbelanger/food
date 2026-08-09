@@ -27,8 +27,8 @@ class WeightTest extends TestCase
 		parent::setUp();
 		$this->user = User::factory()->create();
 		$this->otherUser = User::factory()->create(['username' => 'bar', 'email' => 'bar@example.com']);
-		$this->weight = Weight::factory()->create(['user_id' => $this->user->id]);
-		$this->otherWeight = Weight::factory()->create(['user_id' => $this->otherUser->id]);
+		$this->weight = Weight::factory()->create(['user_id' => $this->user->getKey()]);
+		$this->otherWeight = Weight::factory()->create(['user_id' => $this->otherUser->getKey()]);
 	}
 
 	public function testIndex() : void
@@ -37,7 +37,7 @@ class WeightTest extends TestCase
 		$response->assertExactJson([
 			'data' => [
 				[
-					'id' => (string) $this->weight->id,
+					'id' => (string) $this->weight->getKey(),
 					'type' => 'weights',
 					'attributes' => [
 						'weight' => 123.4,
@@ -111,8 +111,8 @@ class WeightTest extends TestCase
 	#[DataProvider('showProvider')]
 	public function testShow(array $args) : void
 	{
-		$args['response'] = $this->replaceToken('%id%', (string) $this->weight->id, $args['response']);
-		$response = $this->actingAs($this->user)->json('GET', $this->path . '/' . $this->{$args['key']}->id);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->weight->getKey(), $args['response']);
+		$response = $this->actingAs($this->user)->json('GET', $this->path . '/' . $this->{$args['key']}->getKey());
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
 	}
@@ -150,9 +150,9 @@ class WeightTest extends TestCase
 	#[DataProvider('updateProvider')]
 	public function testUpdate(array $args) : void
 	{
-		$args['body'] = $this->replaceToken('%id%', (string) $this->weight->id, $args['body']);
-		$args['response'] = $this->replaceToken('%id%', (string) $this->weight->id, $args['response']);
-		$response = $this->actingAs($this->user)->json('PUT', $this->path . '/' . $this->{$args['key']}->id, $args['body']);
+		$args['body'] = $this->replaceToken('%id%', (string) $this->weight->getKey(), $args['body']);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->weight->getKey(), $args['response']);
+		$response = $this->actingAs($this->user)->json('PUT', $this->path . '/' . $this->{$args['key']}->getKey(), $args['body']);
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
 	}
@@ -171,7 +171,7 @@ class WeightTest extends TestCase
 	#[DataProvider('destroyProvider')]
 	public function testDestroy(array $args) : void
 	{
-		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->{$args['key']}->id);
+		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->{$args['key']}->getKey());
 		if ($args['response']) {
 			$response->assertExactJson($args['response']);
 			$response->assertStatus($args['code']);
