@@ -10,27 +10,14 @@ class Trackable extends Model
 {
 	use HasFactory, Resource;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'name',
 		'slug',
 		'units',
 	];
 
-	/**
-	 * Indicates if the model should be timestamped.
-	 *
-	 * @var boolean
-	 */
 	public $timestamps = false;
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		return [

@@ -16,31 +16,17 @@ class Meal extends Model
 {
 	use HasFactory, Resource, SoftDeletes;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'user_id',
 		'name',
 		'is_favourite',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array<string, string>
-	 */
 	protected $casts = [
 		'user_id' => 'integer',
 		'is_favourite' => 'boolean',
 	];
 
-	/**
-	 * @param  array $data
-	 * @return array
-	 */
 	public function defaultAttributes(array $data) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 	{
 		return [
@@ -48,9 +34,6 @@ class Meal extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function defaultFilter() : array
 	{
 		return [
@@ -60,25 +43,16 @@ class Meal extends Model
 		];
 	}
 
-	/**
-	 * @return HasMany
-	 */
 	public function foods() : HasMany
 	{
 		return $this->hasMany(FoodMeal::class, 'meal_id');
 	}
 
-	/**
-	 * @return array
-	 */
 	public function multiRelationships() : array
 	{
 		return ['foods'];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		return [
@@ -87,17 +61,11 @@ class Meal extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function singularRelationships() : array
 	{
 		return ['user'];
 	}
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function user() : BelongsTo
 	{
 		return $this->belongsTo(User::class);

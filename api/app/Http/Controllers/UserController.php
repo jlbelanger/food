@@ -14,10 +14,6 @@ use Jlbelanger\Tapioca\Controllers\AuthorizedResourceController;
 
 class UserController extends AuthorizedResourceController
 {
-	/**
-	 * @param  Request $request
-	 * @return JsonResponse
-	 */
 	public function deleteData(Request $request) : JsonResponse
 	{
 		$types = $request->input('types');

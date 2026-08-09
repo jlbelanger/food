@@ -53,11 +53,6 @@ class Image
 		];
 	}
 
-	/**
-	 * @param  string  $path
-	 * @param  integer $fileType
-	 * @return array
-	 */
 	private static function getImageSource(string $path, int $fileType) : array
 	{
 		$src = null;
@@ -82,15 +77,6 @@ class Image
 		return self::fixOrientation($path, $fileType, $src);
 	}
 
-	/**
-	 * @param  integer $oldWidth
-	 * @param  integer $oldHeight
-	 * @param  integer $newWidth
-	 * @param  string  $srcPath
-	 * @param  string  $dstPath
-	 * @param  integer $fileType
-	 * @return void
-	 */
 	public static function resize(int $oldWidth, int $oldHeight, int $newWidth, string $srcPath, string $dstPath, int $fileType) : void
 	{
 		$src = self::getImageSource($srcPath, $fileType);

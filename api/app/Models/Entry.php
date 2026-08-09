@@ -15,11 +15,6 @@ class Entry extends Model
 {
 	use HasFactory, Resource, SoftDeletes;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'food_id',
 		'user_id',
@@ -27,21 +22,12 @@ class Entry extends Model
 		'date',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array<string, string>
-	 */
 	protected $casts = [
 		'food_id' => 'integer',
 		'user_id' => 'integer',
 		'user_serving_size' => 'float',
 	];
 
-	/**
-	 * @param  array $data
-	 * @return array
-	 */
 	public function defaultAttributes(array $data) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 	{
 		$foodId = !empty($data['attributes']['food_id']) ? $data['attributes']['food_id'] : null;
@@ -51,9 +37,6 @@ class Entry extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function defaultFilter() : array
 	{
 		return [
@@ -63,17 +46,11 @@ class Entry extends Model
 		];
 	}
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function food() : BelongsTo
 	{
 		return $this->belongsTo(Food::class);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		return [
@@ -82,17 +59,11 @@ class Entry extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function singularRelationships() : array
 	{
 		return ['food', 'user'];
 	}
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function user() : BelongsTo
 	{
 		return $this->belongsTo(User::class);

@@ -11,11 +11,6 @@ use Jlbelanger\Tapioca\Controllers\AuthorizedResourceController;
 
 class FoodController extends AuthorizedResourceController
 {
-	/**
-	 * @param  Request $request
-	 * @param  string  $id
-	 * @return JsonResponse
-	 */
 	public function favourite(Request $request, string $id) : JsonResponse // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
 	{
 		$food = Food::find($id);

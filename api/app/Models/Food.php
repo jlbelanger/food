@@ -23,11 +23,6 @@ class Food extends Model
 {
 	use HasFactory, Resource, SoftDeletes;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'name',
 		'slug',
@@ -78,11 +73,6 @@ class Food extends Model
 		'chloride',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array<string, string>
-	 */
 	protected $casts = [
 		'user_id' => 'integer',
 		'serving_size' => 'float',
@@ -128,10 +118,6 @@ class Food extends Model
 		'chloride' => 'integer',
 	];
 
-	/**
-	 * @param  User $user
-	 * @return void
-	 */
 	public function addFavourite(User $user) : void
 	{
 		DB::table('food_user')->insert([
@@ -142,18 +128,11 @@ class Food extends Model
 		$user->clearFavouritesCache();
 	}
 
-	/**
-	 * @return array
-	 */
 	public function additionalAttributes() : array
 	{
 		return ['deleteable', 'is_favourite', 'is_verified'];
 	}
 
-	/**
-	 * @param  array $data
-	 * @return array
-	 */
 	public function defaultAttributes(array $data) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 	{
 		return [
@@ -161,25 +140,16 @@ class Food extends Model
 		];
 	}
 
-	/**
-	 * @return HasMany
-	 */
 	public function entries() : HasMany
 	{
 		return $this->hasMany(Entry::class, 'food_id');
 	}
 
-	/**
-	 * @return boolean
-	 */
 	public function getDeleteableAttribute() : bool
 	{
 		return !$this->entries()->exists() && !$this->meals()->exists();
 	}
 
-	/**
-	 * @return boolean
-	 */
 	public function getIsFavouriteAttribute() : bool
 	{
 		$user = Auth::guard('sanctum')->user();
@@ -189,35 +159,21 @@ class Food extends Model
 		return in_array($this->id, $user->favouriteFoodIds());
 	}
 
-	/**
-	 * @return boolean
-	 */
 	public function getIsVerifiedAttribute() : bool
 	{
 		return empty($this->user_id);
 	}
 
-	/**
-	 * @return HasMany
-	 */
 	public function meals() : HasMany
 	{
 		return $this->hasMany(FoodMeal::class, 'food_id');
 	}
 
-	/**
-	 * @return array
-	 */
 	public function multiRelationships() : array
 	{
 		return ['user_entries', 'user_meals'];
 	}
 
-	/**
-	 * @param  string $key
-	 * @param  string $filename
-	 * @return void
-	 */
 	public function processFile(string $key, string $filename) : void // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
 	{
 		if (!$filename) {
@@ -229,9 +185,6 @@ class Food extends Model
 		Image::resize($oldWidth, $oldHeight, 500, $path, $path, $fileType);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		$rules = [
@@ -366,18 +319,11 @@ class Food extends Model
 		$this->attributes['serving_units'] = $value;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function singularRelationships() : array
 	{
 		return ['user'];
 	}
 
-	/**
-	 * @param  array $meta
-	 * @return void
-	 */
 	public function updateMeta(array $meta) : void
 	{
 		if (!empty($meta['is_favourite'])) {
@@ -385,12 +331,6 @@ class Food extends Model
 		}
 	}
 
-	/**
-	 * @param  string $key
-	 * @param  string $filename
-	 * @param  array  $data
-	 * @return string
-	 */
 	public function uploadedFilename(string $key, string $filename, array $data = []) : string
 	{
 		$slug = !empty($data['attributes']['slug']) ? $data['attributes']['slug'] : $this->slug;
@@ -402,17 +342,11 @@ class Food extends Model
 		return '/uploads/food/' . $key . '/' . strtolower(Str::random(16)) . '/' . $slug . '.' . $extension;
 	}
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function user() : BelongsTo
 	{
 		return $this->belongsTo(User::class);
 	}
 
-	/**
-	 * @return HasMany
-	 */
 	public function userEntries() : HasMany
 	{
 		$user = Auth::guard('sanctum')->user();
@@ -426,9 +360,6 @@ class Food extends Model
 		return $output;
 	}
 
-	/**
-	 * @return HasManyThrough
-	 */
 	public function userMeals() : HasManyThrough
 	{
 		$user = Auth::guard('sanctum')->user();

@@ -24,11 +24,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
 	use HasApiTokens, HasFactory, Notifiable, Resource, SoftDeletes;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'username',
 		'email',
@@ -42,21 +37,11 @@ class User extends Authenticatable implements MustVerifyEmail
 		'is_admin',
 	];
 
-	/**
-	 * The attributes that should be hidden for serialization.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $hidden = [
 		'password',
 		'remember_token',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array<string, string>
-	 */
 	protected $casts = [
 		'age' => 'integer',
 		'height' => 'integer',
@@ -66,17 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
 		'email_verified_at' => 'datetime',
 	];
 
-	/**
-	 * @return array
-	 */
 	public function additionalAttributes() : array
 	{
 		return ['weight', 'weight_date'];
 	}
 
-	/**
-	 * @return void
-	 */
 	public function clearFavouritesCache() : void
 	{
 		if (config('cache.enable')) {
@@ -84,17 +63,11 @@ class User extends Authenticatable implements MustVerifyEmail
 		}
 	}
 
-	/**
-	 * @return BelongsToMany
-	 */
 	public function favourites() : BelongsToMany
 	{
 		return $this->belongsToMany(Food::class);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function favouriteFoodIds() : array
 	{
 		if (config('cache.enable')) {
@@ -105,10 +78,6 @@ class User extends Authenticatable implements MustVerifyEmail
 		return $this->favourites()->pluck('food_id')->toArray();
 	}
 
-	/**
-	 * @param  boolean $remember
-	 * @return array
-	 */
 	public function getAuthInfo(bool $remember) : array
 	{
 		return [
@@ -120,11 +89,6 @@ class User extends Authenticatable implements MustVerifyEmail
 		];
 	}
 
-	/**
-	 * @param  Collection   $trackables
-	 * @param  integer|null $year
-	 * @return array
-	 */
 	public function getDataByDate(Collection $trackables, ?int $year = null) : array
 	{
 		$select = ['entries.date'];
@@ -167,25 +131,16 @@ class User extends Authenticatable implements MustVerifyEmail
 		return $output;
 	}
 
-	/**
-	 * @return Weight|null
-	 */
-	public function getWeightAttribute()
+	public function getWeightAttribute() : ?Weight
 	{
 		return $this->weights()->select(['date', 'weight'])->orderBy('date', 'desc')->first();
 	}
 
-	/**
-	 * @return array
-	 */
 	public function multiRelationships() : array
 	{
 		return ['trackables'];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		$rules = [
@@ -208,25 +163,16 @@ class User extends Authenticatable implements MustVerifyEmail
 		return $rules;
 	}
 
-	/**
-	 * @return BelongsToMany
-	 */
 	public function trackables() : BelongsToMany
 	{
 		return $this->belongsToMany(Trackable::class);
 	}
 
-	/**
-	 * @return HasMany
-	 */
 	public function weights() : HasMany
 	{
 		return $this->hasMany(Weight::class);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function whitelistedAttributes() : array
 	{
 		return array_merge($this->fillable, ['password_confirmation']);

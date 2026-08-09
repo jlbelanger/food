@@ -15,47 +15,28 @@ class FoodMeal extends Model
 
 	protected $table = 'food_meal';
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'food_id',
 		'meal_id',
 		'user_serving_size',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array<string, string>
-	 */
 	protected $casts = [
 		'food_id' => 'integer',
 		'meal_id' => 'integer',
 		'user_serving_size' => 'float',
 	];
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function food() : BelongsTo
 	{
 		return $this->belongsTo(Food::class);
 	}
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function meal() : BelongsTo
 	{
 		return $this->belongsTo(Meal::class);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		$rules = [
@@ -76,9 +57,6 @@ class FoodMeal extends Model
 		return $rules;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function singularRelationships() : array
 	{
 		return ['food', 'meal'];

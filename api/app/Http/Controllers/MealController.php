@@ -12,11 +12,6 @@ use Jlbelanger\Tapioca\Controllers\AuthorizedResourceController;
 
 class MealController extends AuthorizedResourceController
 {
-	/**
-	 * @param  Request $request
-	 * @param  string  $id
-	 * @return JsonResponse
-	 */
 	public function add(Request $request, string $id) : JsonResponse // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
 	{
 		$meal = Meal::find($id);

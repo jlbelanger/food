@@ -7,11 +7,7 @@ use Illuminate\Support\Carbon;
 
 class FoodObserver
 {
-	/**
-	 * @param  Food $food
-	 * @return void
-	 */
-	public function updating(Food $food)
+	public function updating(Food $food) : void
 	{
 		if (!$food->isDirty('slug')) {
 			return;
@@ -37,11 +33,7 @@ class FoodObserver
 		}
 	}
 
-	/**
-	 * @param  Food $food
-	 * @return void
-	 */
-	public function updated(Food $food)
+	public function updated(Food $food) : void
 	{
 		// When uploading or removing file, delete the old file.
 		$keys = ['front_image', 'info_image'];
@@ -58,11 +50,7 @@ class FoodObserver
 		}
 	}
 
-	/**
-	 * @param  Food $food
-	 * @return void
-	 */
-	public function deleted(Food $food)
+	public function deleted(Food $food) : void
 	{
 		// Delete associated files.
 		$keys = ['front_image', 'info_image'];

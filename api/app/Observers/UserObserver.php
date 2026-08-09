@@ -7,11 +7,7 @@ use Illuminate\Support\Carbon;
 
 class UserObserver
 {
-	/**
-	 * @param  User $user
-	 * @return void
-	 */
-	public function deleted(User $user)
+	public function deleted(User $user) : void
 	{
 		$user->username = 'deleted-' . Carbon::now() . '-' . $user->username;
 		$user->email = 'deleted-' . Carbon::now() . '-' . $user->email;

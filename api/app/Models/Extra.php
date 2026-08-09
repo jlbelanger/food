@@ -14,11 +14,6 @@ class Extra extends Model
 {
 	use HasFactory, Resource, SoftDeletes;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array<int, string>
-	 */
 	protected $fillable = [
 		'user_id',
 		'note',
@@ -65,11 +60,6 @@ class Extra extends Model
 		'chloride',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array<string, string>
-	 */
 	protected $casts = [
 		'user_id' => 'integer',
 		'calories' => 'integer',
@@ -114,10 +104,6 @@ class Extra extends Model
 		'chloride' => 'integer',
 	];
 
-	/**
-	 * @param  array $data
-	 * @return array
-	 */
 	public function defaultAttributes(array $data) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 	{
 		return [
@@ -125,9 +111,6 @@ class Extra extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function defaultFilter() : array
 	{
 		return [
@@ -137,9 +120,6 @@ class Extra extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function rules() : array
 	{
 		return [
@@ -188,17 +168,11 @@ class Extra extends Model
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function singularRelationships() : array
 	{
 		return ['user'];
 	}
 
-	/**
-	 * @return BelongsTo
-	 */
 	public function user() : BelongsTo
 	{
 		return $this->belongsTo(User::class);

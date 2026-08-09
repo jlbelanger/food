@@ -9,25 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ResetAuth extends Command
 {
-	/**
-	 * The name and signature of the console command.
-	 *
-	 * @var string
-	 */
 	protected $signature = 'auth:reset-admin';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
 	protected $description = 'Reset admin credentials';
 
-	/**
-	 * Executes the console command.
-	 *
-	 * @return mixed
-	 */
 	public function handle()
 	{
 		if (!app()->isLocal()) {
