@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Entry;
+use App\Models\Food;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -12,24 +13,24 @@ class EntryTest extends TestCase
 {
 	use RefreshDatabase;
 
-	protected $path = '/entries';
+	protected string $path = '/entries';
 
-	protected $user;
+	protected User $user;
 
-	protected $otherUser;
+	protected User $otherUser;
 
-	protected $food;
+	protected Food $food;
 
-	protected $entry;
+	protected Entry $entry;
 
-	protected $otherEntry;
+	protected Entry $otherEntry;
 
 	protected function setUp() : void
 	{
 		parent::setUp();
 		$this->user = User::factory()->create();
 		$this->otherUser = User::factory()->create(['username' => 'bar', 'email' => 'bar@example.com']);
-		$this->food = \App\Models\Food::factory()->create();
+		$this->food = Food::factory()->create();
 		$this->entry = Entry::factory()->create(['food_id' => $this->food->getKey(), 'user_id' => $this->user->getKey()]);
 		$this->otherEntry = Entry::factory()->create(['food_id' => $this->food->getKey(), 'user_id' => $this->otherUser->getKey()]);
 	}

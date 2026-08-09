@@ -12,15 +12,15 @@ class WeightTest extends TestCase
 {
 	use RefreshDatabase;
 
-	protected $path = '/weights';
+	protected string $path = '/weights';
 
-	protected $user;
+	protected User $user;
 
-	protected $otherUser;
+	protected User $otherUser;
 
-	protected $weight;
+	protected Weight $weight;
 
-	protected $otherWeight;
+	protected Weight $otherWeight;
 
 	protected function setUp() : void
 	{

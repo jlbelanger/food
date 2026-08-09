@@ -12,15 +12,15 @@ class ExtraTest extends TestCase
 {
 	use RefreshDatabase;
 
-	protected $path = '/extras';
+	protected string $path = '/extras';
 
-	protected $user;
+	protected User $user;
 
-	protected $otherUser;
+	protected User $otherUser;
 
-	protected $extra;
+	protected Extra $extra;
 
-	protected $otherExtra;
+	protected Extra $otherExtra;
 
 	protected function setUp() : void
 	{

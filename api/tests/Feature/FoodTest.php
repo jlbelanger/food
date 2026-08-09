@@ -12,15 +12,15 @@ class FoodTest extends TestCase
 {
 	use RefreshDatabase;
 
-	protected $path = '/food';
+	protected string $path = '/food';
 
-	protected $user;
+	protected User $user;
 
-	protected $otherUser;
+	protected User $otherUser;
 
-	protected $food;
+	protected Food $food;
 
-	protected $otherFood;
+	protected Food $otherFood;
 
 	protected function setUp() : void
 	{

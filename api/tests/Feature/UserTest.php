@@ -11,11 +11,11 @@ class UserTest extends TestCase
 {
 	use RefreshDatabase;
 
-	protected $path = '/users';
+	protected string $path = '/users';
 
-	protected $user;
+	protected User $user;
 
-	protected $otherUser;
+	protected User $otherUser;
 
 	protected function setUp() : void
 	{

@@ -12,11 +12,11 @@ class TrackableTest extends TestCase
 {
 	use RefreshDatabase;
 
-	protected $path = '/trackables';
+	protected string $path = '/trackables';
 
-	protected $user;
+	protected User $user;
 
-	protected $trackable;
+	protected Trackable $trackable;
 
 	protected function setUp() : void
 	{
